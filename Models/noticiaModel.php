@@ -16,8 +16,15 @@ class NoticiaModel{
         return $stmt->fetch();
     }
 
-    public function getComentarios($id){
-        $stmt = $this->conn->prepare("SELECT * FROM $this->comentarios WHERE id_noticia =? ORDER BY fecha_creacion DESC LIMIT 10");
+    public function getComentarios($id) {
+        $query = "SELECT c.*, u.nombre AS usuario_nombre
+                  FROM comentarios AS c
+                  INNER JOIN usuarios AS u ON c.usuario_id = u.id
+                  WHERE c.noticia_id = ?
+                  ORDER BY c.fecha DESC
+                  LIMIT 10";
+        
+        $stmt = $this->conn->prepare($query);
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }

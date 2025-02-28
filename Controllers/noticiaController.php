@@ -17,23 +17,16 @@ class NoticiaController {
         $this->noticiaModel= new NoticiaModel($this->conectar);
     }
 
-    public function getNoticia(){
+    public function getNoticiaById($id){
         $id = $_GET['id'];
         $noticia = $this->noticiaModel->getNoticia($id);
         require './Views/noticia.php';
     }
 
     public function getComentarios($id) {
-        $query = "SELECT c.*, u.nombre AS usuario_nombre
-                  FROM comentarios AS c
-                  INNER JOIN usuarios AS u ON c.usuario_id = u.id
-                  WHERE c.noticia_id = ?
-                  ORDER BY c.fecha DESC
-                  LIMIT 10";
-        
-        $stmt = $this->conectar->prepare($query);
-        $stmt->execute([$id]);
-        return $stmt->fetchAll();
+        $id = $_GET['id']?? '';
+        $this->noticiaModel->getComentarios($id);
+        header("Location: index.php?action=dashboard");
     }
     
     public function createNoticia(){
