@@ -23,12 +23,19 @@ class NoticiaController {
         require './Views/noticia.php';
     }
 
-    public function getComentarios(){
-        $id = $_GET['id'];
-        $comentarios = $this->noticiaModel->getComentarios($id);
-        require './Views/comentarios.php';
+    public function getComentarios($id) {
+        $query = "SELECT c.*, u.nombre AS usuario_nombre
+                  FROM comentarios AS c
+                  INNER JOIN usuarios AS u ON c.usuario_id = u.id
+                  WHERE c.noticia_id = ?
+                  ORDER BY c.fecha DESC
+                  LIMIT 10";
+        
+        $stmt = $this->conectar->prepare($query);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
     }
-
+    
     public function createNoticia(){
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $imagen     = $_POST['imagen'];
