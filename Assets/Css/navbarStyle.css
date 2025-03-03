@@ -1,154 +1,180 @@
+/* Variables CSS */
+:root {
+  --navbar-height: 1.5cm;
+  --navbar-padding-left: 1cm;
+  --navbar-padding-right: 0.5cm;
+  --navbar-bg: #5ab507;
+  --active-bg: #468704;
+  --nav-item-width: 170px;
+  --logo-margin-right: 20px;
+  --divider-margin: 0.2cm;
+  --font-primary: "Noto Sans JP", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+  --nav-item-font-size: 21pt;
+  --nav-active-left: -13px;
+  --nav-active-right: -13px;
+  --nav-active-top: -8px;
+  --nav-active-bottom: -8px;
+}
+
 /* Carga de fuentes locales */
 @font-face {
-    font-family: 'Noto Sans JP';
-    src: url('../Fonts/NotoSansJP-ExtraBold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Noto Sans JP";
+  src: url("../Fonts/NotoSansJP-ExtraBold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'Roboto';
-    src: url('../Fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Roboto";
+  src: url("../Fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
-    font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--font-primary);
 }
 
 /* Navbar principal */
 .navbar {
-    background-color: #5AB507;
-    height: 1.5cm;
-    padding-left: 0.5cm;
-    padding-right: 1cm;
-    display: flex;
-    align-items: center;
+  background-color: var(--navbar-bg);
+  height: var(--navbar-height);
+  padding: 0 var(--navbar-padding-right) 0 var(--navbar-padding-left);
+  display: flex;
+  align-items: center;
 }
 
 .navbar-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-items {
+  display: contents;
+}
+
+/* Dividers: solo separadores */
+.divider {
+  flex: none;
+  margin: 0 var(--divider-margin);
+}
+.divider svg {
+  width: 10px;
+  height: 40px;
+  display: block;
+}
+
+/* Secciones fijas para logo y nav-items */
+.nav-logo,
+.nav-item {
+  width: var(--nav-item-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Logo */
 .nav-logo img {
-    height: 1cm;
+  max-height: 1cm;
+  width: auto;
+  margin-right: var(--logo-margin-right);
 }
 
 /* Elementos de navegación */
-.nav-items {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
 .nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-    font-size: 21pt;
-    height: 100%;
-    padding: 0 0.3cm;
-    white-space: nowrap;
-    position: relative; /* Para que el pseudo-elemento de .active se posicione correctamente */
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: var(--nav-item-font-size);
+  white-space: nowrap;
+  position: relative;
+  padding: 0 0.1cm;
+  overflow: visible;
 }
 
-/* Estado activo: se usa un pseudo-elemento para cubrir toda la altura y el área de padding */
+/* Estado activo: cuadro detrás del texto */
 .nav-item.active {
-    color: #ffffff;
+  position: relative;
 }
 .nav-item.active::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #468704;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: var(--nav-active-top);
+  bottom: var(--nav-active-bottom);
+  left: var(--nav-active-left);
+  right: var(--nav-active-right);
+  background-color: var(--active-bg);
+  z-index: 0;
+}
+.nav-item.active span {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
 }
 
-/* Divisores */
-.divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0.3cm;
-}
-.divider svg {
-    display: block;
-    width: 10px;
-    height: 40px;
-}
-
-/* Sección Iniciar Sesión */
-.nav-item.iniciar-sesion {
-    display: flex;
-    align-items: center;
-    font-size: 18.5pt;
-}
-/* Ajuste para que el SVG del ícono no se recorte y se escale a la altura del nav-item */
-.nav-item.iniciar-sesion .icon-iniciar svg {
-    height: 100%;
-    width: 30px;
-}
-.iniciar-text {
-    display: flex;
-    flex-direction: column;
-}
-.iniciar-text span {
-    line-height: 1;
-}
-
-/* Sección Contacto */
+/* Secciones especiales: contacto, iniciar sesión */
 .nav-item.contacto {
-    display: flex;
-    align-items: center;
-    gap: 0.2cm;
+  gap: 0.1cm;
 }
 .icon-contacto svg {
-    width: 20px;
-    height: 26px;
+  width: 20px;
+  height: 26px;
+}
+
+.nav-item.iniciar-sesion {
+  font-size: 18.5pt;
+}
+.nav-item.iniciar-sesion .icon-iniciar svg {
+  width: 30px;
+  height: 100%;
+}
+.iniciar-text {
+  display: flex;
+  flex-direction: column;
+}
+.iniciar-text span {
+  line-height: 1;
 }
 
 /* Sección de búsqueda */
-.search-section {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-}
 .search-bar {
-    height: 1.2cm;
-    border: none;
-    border-radius: 0.3cm;
-    padding: 0 0.3cm;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24pt;
-    font-weight: normal;
+  flex: 1;
+  height: 1.2cm;
+  border: none;
+  border-radius: 0.2cm;
+  padding: 0 0.1cm;
+  font-family: var(--font-secondary);
+  font-size: 18pt;
 }
 .search-button {
-    width: 1.2cm;
-    height: 1.2cm;
-    background-color: #468704;
-    border: none;
-    margin-left: 0.3cm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.3cm;
+  width: 40px;
+  height: 1.2cm;
+  background-color: var(--active-bg);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2cm;
 }
 .search-button svg {
-    width: 1cm;
-    height: 1cm;
-    fill: #ffffff;
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+}
+
+/* Sección de búsqueda ocupa el espacio restante */
+.search-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.2cm;
 }

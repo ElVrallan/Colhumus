@@ -2,8 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Navbar Colhumus - Desktop</title>
+  <title>Colhumus</title>
+  <link rel="icon" type="image/x-icon" href="./Assets/Images/Colhumus%20icono.ico">
   <link rel="stylesheet" href="./Assets/Css/navbarStyle.css">
+  <link rel="stylesheet" href="./Assets/Css/scrollbarStyle.css">
 </head>
 <body>
   <nav class="navbar">
@@ -20,13 +22,13 @@
       </div>
       <!-- Menú de navegación -->
       <div class="nav-items">
-        <div class="nav-item active">Inicio</div>
+      <div class="nav-item active"><span>Inicio</span></div>
         <div class="divider">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
             <rect width="10" height="40" rx="5" fill="#468704" />
           </svg>
         </div>
-        <div class="nav-item">¿Acerca de?</div>
+        <div class="nav-item"><span>¿Acerca de?</span></div>
         <div class="divider">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
             <rect width="10" height="40" rx="5" fill="#468704" />
@@ -38,7 +40,7 @@
               <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708"/>
             </svg>
           </span>
-          Contacto
+          <span>Contacto</span>
         </div>
         <div class="divider">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
