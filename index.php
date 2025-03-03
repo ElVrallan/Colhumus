@@ -13,7 +13,6 @@ switch($action){
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();
         include './Views/includes/navbar.php';
-        include './Views/includes/scrollbar.php';
         include './Views/dashboard.php';
         break;
     case 'getNoticiaById':

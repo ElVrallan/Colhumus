@@ -43,12 +43,17 @@ body {
 
 /* Navbar principal */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: var(--navbar-bg);
   height: var(--navbar-height);
   padding: 0 var(--navbar-padding-right) 0 var(--navbar-padding-left);
   display: flex;
   align-items: center;
 }
+
 
 .navbar-content {
   display: flex;
