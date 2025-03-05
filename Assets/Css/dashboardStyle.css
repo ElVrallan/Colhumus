@@ -48,6 +48,7 @@ body {
   border-radius: 20px;
   padding: 10px;
   margin: 0 20px;
+  overflow: hidden;
 }
 
 /* Imagen de la noticia */
@@ -59,7 +60,7 @@ body {
 }
 
 .imagen-noticia img {
-  width: 100%;
+  width: 280px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
@@ -75,6 +76,13 @@ body {
   max-width: 48ch;
   word-wrap: break-word;
   margin: 0 auto;
+  
+  /* Limitar visualmente a 2 líneas y truncar con puntos suspensivos */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Contenido de la noticia */
@@ -83,49 +91,23 @@ body {
   overflow: hidden;
 }
 
-/* Cuerpo de la noticia */
+/* Cuerpo de la noticia con división en columnas */
 .cuerpo-noticia {
   font-family: "RobotoVariable", sans-serif;
   font-size: 12pt;
   text-align: justify;
   margin-top: 10px;
+  width: 560px;             /* Ancho total para 2 columnas de 280px cada una */
+  column-count: 2;          /* 2 columnas */
+  column-gap: 8px;          /* Espacio entre columnas */
+  column-rule: 1px solid #000; /* Divisor entre columnas */
 }
 
-/* Contenedor para las dos columnas */
-.cuerpo-container {
-  display: flex;
-  align-items: flex-start;
-  /* Fijamos la altura basada en 12 líneas con un line-height de 1.2em */
-  height: calc(12 * 1.2em);
+/* Fecha y estadísticas */
+.fecha {
+  margin-top: 10px;
 }
 
-/* Columnas de texto */
-.columna-izquierda,
-.columna-derecha {
-  width: 50%;
-  /* Se quitan márgenes laterales para el vector */
-  padding: 0;
+.estadisticas {
+  margin-top: 10px;
 }
-
-.columna-izquierda p,
-.columna-derecha p {
-  margin: 0;
-  line-height: 1.2em;
-  text-align: justify;
-  width: 100%;
-}
-
-/* Divisor (vector) entre columnas */
-.divisor {         
-  margin: 0 4px;         /* Reducido, pero sin quitarlo totalmente */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;          /* Igual a la altura del contenedor (12 líneas) */
-}
-
-.divisor svg {
-  height: 100%;
-  display: block;
-}
-

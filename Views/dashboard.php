@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,42 @@
     </div>
 
     <div class="noticias-container">
-        <?php foreach($listaNoticias as $noticia): ?>
+        <?php
+      // Función para dividir el texto sin cortar palabras
+      function wrapText($text, $maxLength) {
+          $words = explode(" ", $text);
+          $lines = [];
+          $currentLine = "";
+
+          foreach ($words as $word) {
+              // Sumar 1 por el espacio si currentLine no está vacío
+              if (mb_strlen($currentLine) + mb_strlen($word) + ($currentLine !== "" ? 1 : 0) <= $maxLength) {
+                  $currentLine .= ($currentLine ? " " : "") . $word;
+              } else {
+                  $lines[] = $currentLine;
+                  $currentLine = $word;
+              }
+          }
+
+          if ($currentLine !== "") {
+              $lines[] = $currentLine;
+          }
+
+          return $lines;
+      }
+
+      // Función para formatear el título: se trunca a 77 caracteres (si es muy largo)
+      // y se limita visualmente a 2 líneas mediante CSS.
+      function formatTitle($title) {
+          $maxTitleLength = 77; // Truncamiento a 77 caracteres
+          if (mb_strlen($title) > $maxTitleLength) {
+              return mb_substr($title, 0, $maxTitleLength) . '...';
+          }
+          return $title;
+      }
+    ?>
+
+        <?php foreach ($listaNoticias as $noticia): ?>
         <article class="noticia">
             <!-- Imagen de la noticia -->
             <div class="imagen-noticia">
@@ -22,55 +57,49 @@
                     alt="<?= $noticia['titulo']; ?>" loading="lazy"
                     onerror="this.onerror=null; this.src='./Assets/Images/default-thumbnail.jpg';">
             </div>
+
             <!-- Contenido de la noticia -->
             <div class="contenido-noticia">
-                <h2 class="titulo-noticia"><?= $noticia['titulo']; ?></h2>
+                <!-- Título de la noticia -->
+                <h2 class="titulo-noticia">
+                    <?= formatTitle($noticia['titulo']); ?>
+                </h2>
 
-                <!-- Cuerpo del texto -->
+                <!-- Cuerpo de la noticia dividido en 2 columnas -->
                 <div class="cuerpo-noticia">
                     <?php 
-            // Configuración
-            $lineCharCount = 36; // Cada "línea" se corta a 36 caracteres
-            $maxLines = 12;      // Se mostrarán 12 líneas en cada columna
-            $truncLimit = 23;    // En la última línea de la columna derecha se trunca a 23 caracteres
+              $maxLines = 12;      // Máximo de 12 líneas por columna
+              $lineCharLimit = 23; // Límite de caracteres para envolver cada línea
+              
+              // Dividir el cuerpo en líneas sin cortar palabras
+              $lineas = wrapText($noticia['cuerpo'], $lineCharLimit);
+              
+              // Primera columna: las primeras 12 líneas
+              $izquierda = array_slice($lineas, 0, $maxLines);
+              
+              // Segunda columna: las siguientes 12 líneas
+              $derecha = array_slice($lineas, $maxLines, $maxLines);
+              
+              // Si la segunda columna tiene 12 líneas, truncamos la última:
+              if(count($derecha) === $maxLines) {
+                  if(mb_strlen($derecha[$maxLines - 1]) > 13) {
+                      $derecha[$maxLines - 1] = mb_substr($derecha[$maxLines - 1], 0, -13) . '... Ver más...';
+                  } else {
+                      $derecha[$maxLines - 1] .= '... Ver más...';
+                  }
+              }
+            ?>
 
-            $cuerpo = $noticia['cuerpo'];
-
-            // Dividir el texto en "chunks" de 36 caracteres (sin respetar palabras)
-            $chunks = str_split($cuerpo, $lineCharCount);
-
-            // Columna izquierda: primeros 12 chunks
-            $izquierda = array_slice($chunks, 0, $maxLines);
-            while(count($izquierda) < $maxLines){
-              $izquierda[] = "";
-            }
-
-            // Columna derecha: el resto (máximo 12 líneas)
-            $restChunks = array_slice($chunks, $maxLines);
-            $derecha = array_slice($restChunks, 0, $maxLines);
-            while(count($derecha) < $maxLines){
-              $derecha[] = "";
-            }
-            // Truncar la última línea de la columna derecha si es necesario
-            if(mb_strlen($derecha[$maxLines-1]) > $truncLimit){
-              $derecha[$maxLines-1] = mb_substr($derecha[$maxLines-1], 0, $truncLimit) . '... Ver más...';
-            }
-          ?>
                     <div class="cuerpo-container">
                         <div class="columna-izquierda">
-                            <?php for($i = 0; $i < $maxLines; $i++): ?>
-                            <p class="linea"><?= $izquierda[$i] ?></p>
-                            <?php endfor; ?>
-                        </div>
-                        <div class="divisor">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 40" preserveAspectRatio="none">
-                                <rect x="3.33" width="3.33" height="40" rx="1.665" fill="#000" />
-                            </svg>
+                            <?php foreach ($izquierda as $linea): ?>
+                            <p class="linea"><?= $linea; ?></p>
+                            <?php endforeach; ?>
                         </div>
                         <div class="columna-derecha">
-                            <?php for($i = 0; $i < $maxLines; $i++): ?>
-                            <p class="linea"><?= $derecha[$i] ?></p>
-                            <?php endfor; ?>
+                            <?php foreach ($derecha as $linea): ?>
+                            <p class="linea"><?= $linea; ?></p>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
