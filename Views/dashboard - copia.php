@@ -27,7 +27,7 @@
                     <?= $noticia['titulo']; ?>
                 </div>
 
-                    <div class="cuerpo-container">
+                    <div class="cuerpo-noticia">
                         <?= $noticia['cuerpo']; ?>
                     </div>
 
