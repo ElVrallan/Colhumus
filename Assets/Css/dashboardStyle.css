@@ -70,15 +70,18 @@ body {
 
 /* Título de la noticia */
 .titulo-noticia {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Muestra máximo 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Otros estilos */
+  
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 18pt;
   font-weight: 700;
   line-height: 1.1;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 2.5px 0;
   margin-bottom: 5px;
 }
 
@@ -89,6 +92,7 @@ body {
 
 /* Cuerpo de la noticia con división en columnas */
 .cuerpo-noticia {
+  position: relative;
   font-family: "RobotoVariable", sans-serif;
   font-size: 13pt;
   line-height: 1.1;
@@ -96,6 +100,25 @@ body {
   column-gap: 20px;   
   text-align: justify;
   width: auto;           
-  height: 170px;
+  height: 155px;
   overflow: hidden;
+}
+
+.cuerpo-noticia::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px; /* Grosor de la línea */
+  background: #000; /* Color de la línea */
+  border-radius: 2.5px; /* Esquinas redondeadas */
+  left: calc(50% - 2.5px); /* Centrar la línea en el medio */
+  pointer-events: none; /* Permite interactuar con el contenido */
+}
+
+.estadisticas{
+  width: 200px; /* Define el espacio delimitado */
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
 }

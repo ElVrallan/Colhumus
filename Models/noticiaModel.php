@@ -32,7 +32,7 @@ class NoticiaModel{
     public function createNoticia($imagen, $titulo, $cuerpo, $destacada) {
         $query = "INSERT INTO ".$this->noticias." 
                   (imagen, titulo, cuerpo, fecha_publicacion, likes, conteo_comentarios, conteo_compartidas, destacada) 
-                  VALUES (?, ?, ?, ?, 0, 0, 0, ?)";
+                  VALUES (?, ?, ?, CURDATE(), 0, 0, 0, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$imagen, $titulo, $cuerpo, $destacada]);
     }
