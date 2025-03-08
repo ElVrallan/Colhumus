@@ -33,7 +33,23 @@
 
                 <p class="fecha">Publicado el: <?= $noticia['fecha_publicacion']; ?></p>
                 <div class="estadisticas">
-                    <span class="iconlike"><?= $noticia['likes']; ?>
+                    <span class="iconlike"> <?php 
+                        $likes = (int)($noticia['likes']);
+                        if ($likes > 999) { 
+                            $abrev = substr((string)$likes, 0, 2);
+                            echo implode(',', str_split($abrev));
+                            if($likes > 999999999){
+                                echo ' B';
+                            } elseif($likes > 999999){
+                                echo ' M';
+                            } elseif($likes > 999){
+                                echo 'K';
+                            }
+                            }
+                        else {
+                            echo $likes;
+                        }
+                        ?>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
                             <path

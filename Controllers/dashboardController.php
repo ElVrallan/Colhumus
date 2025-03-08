@@ -29,4 +29,8 @@ class DashboardController{
         $id = $_GET['id'] ?? '';
         return $this->dashboardController->getNoticiaById($id);
     }
+
+    public function abreviacionNumerica(){
+        return $this->dashboardController->abreviacionNumerica();
+    }
 }

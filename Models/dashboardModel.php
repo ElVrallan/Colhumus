@@ -26,5 +26,9 @@ class DashboardModel{
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
+
+    public function abreviacionNumerica(){
+        
+    }
 }
 ?>
