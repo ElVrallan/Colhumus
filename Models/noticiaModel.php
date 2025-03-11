@@ -10,7 +10,7 @@ class NoticiaModel{
         $this->conn = Database::conectar();
     }
 
-    public function getNoticia($id){
+    public function getNoticiaById($id){
         $stmt = $this->conn->prepare("SELECT * FROM $this->noticias WHERE id =? LIMIT 1");
         $stmt->execute([$id]);
         return $stmt->fetch();

@@ -16,7 +16,7 @@ class DashboardModel{
     }
 
     public function getListaNoticias(){
-        $stmt = $this->conn->prepare("SELECT * FROM " .$this->noticias. " ORDER BY fecha_publicacion DESC LIMIT 6");
+        $stmt = $this->conn->prepare("SELECT * FROM " .$this->noticias. " ORDER BY fecha_publicacion DESC");
         $stmt->execute();
         return $stmt->fetchAll();
     }

@@ -172,12 +172,11 @@ body {
 }
 
 .nav-item.iniciar-sesion {
-  display: flex;
-  align-items: center; /* Evita estiramientos */
   font-size: 18.5pt;
 }
-.icon-iniciar {
-  align-items: left; /* Centra verticalmente */
+.nav-item.iniciar-sesion .icon-iniciar svg {
+  width: 40px;
+  height: 100%;
 }
 .iniciar-text {
   display: flex;
@@ -185,7 +184,6 @@ body {
 }
 .iniciar-text span {
   line-height: 1;
-  text-align: center;
 }
 
 /* Sección de búsqueda */

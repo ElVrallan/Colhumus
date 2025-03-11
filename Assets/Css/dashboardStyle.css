@@ -43,6 +43,7 @@ body {
 
 /* Noticia individual */
 .noticia {
+  position: relative;
   height: 300px;
   background-color: #FFFFFF;
   border-radius: 20px;
@@ -121,4 +122,37 @@ body {
   display: flex;
   justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
   align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+.noticia-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  /* opacity: 0; */
+  cursor: pointer;
+  z-index: 2;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #468704;
+  border: none;
+  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.floating-button svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
 }
