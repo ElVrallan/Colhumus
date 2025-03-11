@@ -15,6 +15,14 @@ switch($action){
         include './Views/includes/navbar.php';
         include './Views/dashboard.php';
         break;
+    case 'acercaDe':
+        include './Views/includes/navbar.php';
+        include './Views/acercaDe.php';
+        break; 
+    case 'iniciarSesion':
+        include './Views/includes/navbar.php';
+        include './Views/usuarios/login.php';
+        break;       
     case 'getNoticiaById':
         $noticia = $noticiaController->getNoticiaById();
         include './Views/Noticias/Noticia.php';
@@ -38,7 +46,6 @@ switch($action){
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();
         include './Views/Includes/navbar.php';
-        include './Views/Includes/scrollbar.php';
         include './Views/dashboard.php';
         break;
 } 

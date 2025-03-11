@@ -30,5 +30,17 @@ class DashboardModel{
     public function abreviacionNumerica(){
         
     }
+
+    // public function viewDashboard(){
+    //     return $this->dashboardController->viewDashboard();
+    // }
+
+    // public function contacto(){
+    //     return $this->dashboardController->contacto();
+    // }
+
+    // public function viewIniciarSesion(){
+    //     return $this->dashboardController->viewIniciarSesion();
+    // }
 }
 ?>
