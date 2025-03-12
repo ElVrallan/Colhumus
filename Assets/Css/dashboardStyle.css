@@ -41,15 +41,27 @@ body {
   padding-top: 2cm;
 }
 
-/* Noticia individual */
 .noticia {
-  position: relative;
+  position: relative; /* Necesario para que el botón absoluto funcione dentro */
   height: 300px;
   background-color: #FFFFFF;
   border-radius: 20px;
   padding: 10px;
   margin: 0 20px;
   overflow: hidden;
+}
+
+.verNoticiaButton {
+  position: absolute;  /* Hace que el botón cubra solo la noticia */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2; /* Asegura que esté sobre el contenido de la noticia */
 }
 
 /* Imagen de la noticia */
@@ -124,19 +136,6 @@ body {
   align-items: center; /* Alinea los elementos verticalmente en el centro */
 }
 
-.noticia-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
-  /* opacity: 0; */
-  cursor: pointer;
-  z-index: 2;
-}
-
 .floating-button {
   position: fixed;
   bottom: 20px;
@@ -155,4 +154,76 @@ body {
   width: 24px;
   height: 24px;
   fill: white;
+}
+
+/* Contenedor de botones para las acciones */
+.accion-buttons {
+  display: flex;
+  gap: 10px; /* Espacio entre botones, ajústalo según sea necesario */
+  margin-top: 10px; /* Espacio superior para separar de las estadísticas */
+}
+
+/* Estilo de cada botón de acción */
+.accion-button {
+  background-color: #468704;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px; /* Puedes ajustar padding para igualar la altura deseada */
+  cursor: pointer;
+}
+
+/* Aseguramos que los íconos SVG sean blancos y tengan un pequeño margen respecto al texto */
+.accion-button svg {
+  fill: white;
+  margin-left: 5px;
+}
+
+/* Contenedor que agrupa estadísticas y botones */
+.estadisticas {
+  float: left;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: "RobotoVariable", sans-serif;
+  font-size: 14pt;
+}
+
+/* Contenedor independiente de botones (alineado a la derecha) */
+.accion-buttons {
+  float: right;
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilo de cada botón de acción */
+.accion-button {
+  background-color: #468704;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13pt;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px; /* Ajusta este valor según la altura deseada */
+  cursor: pointer;
+}
+
+/* Íconos SVG en blanco con un pequeño margen */
+.accion-button svg {
+  fill: white;
+  margin-left: 5px;
+}
+
+/* Clear floats */
+.clear {
+  clear: both;
 }
