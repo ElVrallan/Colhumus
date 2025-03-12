@@ -13,7 +13,7 @@ class NoticiaModel{
     public function getNoticiaById($id){
         $stmt = $this->conn->prepare("SELECT * FROM $this->noticias WHERE id =? LIMIT 1");
         $stmt->execute([$id]);
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getComentarios($id) {

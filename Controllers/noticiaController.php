@@ -73,27 +73,54 @@ class NoticiaController {
         }
     }    
 
-    public function updateNoticia(){
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
+    public function updateNoticia() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id         = $_POST['id'];
-            $imagen     = $_POST['imagen'];
             $titulo     = $_POST['titulo'];
             $cuerpo     = $_POST['cuerpo'];
-            $destacada  = $_POST['destacada'];
+            $destacada  = isset($_POST['destacada']) ? 1 : 0; // Si no está marcado, será 0
+    
+            // Obtener la noticia actual para mantener la imagen si no se cambia
+            $noticiaActual = $this->noticiaModel->getNoticiaById($id);
+            $imagen = $noticiaActual['imagen']; // Mantener la imagen actual por defecto
+    
+            // Manejo de imagen: Si se sube una nueva, reemplazarla
+            if (!empty($_FILES['imagen']['name'])) {
+                $nombreArchivo = basename($_FILES['imagen']['name']); // Mantener el nombre original del archivo
+                $imagen = $this->subirImagen($_FILES['imagen'], $nombreArchivo);
+            }
+    
+            // Actualizar noticia en la base de datos
             $this->noticiaModel->updateNoticia($id, $imagen, $titulo, $cuerpo, $destacada);
+    
             header("Location: index.php?action=dashboard");
         }
     }
 
+    private function subirImagen($archivo) {
+        $directorioDestino = "./Assets/Images/Noticias/Thumbnail/"; // Carpeta donde guardar las imágenes
+        $nombreArchivo = time() . "_" . basename($archivo["name"]);
+        $rutaCompleta = $directorioDestino . $nombreArchivo;
+    
+        // Mover la imagen al directorio de destino
+        if (move_uploaded_file($archivo["tmp_name"], $rutaCompleta)) {
+            return $rutaCompleta; // Devolver la ruta de la imagen guardada
+        }
+        return null; // Si falla, devolver null
+    }    
+
     public function deleteNoticia(){
         $id = $_GET['id'] ?? '';
         $this->noticiaModel->deleteNoticia($id);
+        header("Location: index.php?action=dashboard");
+        exit();
     }
 
     public function actualizarNoticiaDestacada(){
         $id = $_GET['id']?? '';
         $this->noticiaModel->actualizarNoticiaDestacada($id);
         header("Location: index.php?action=dashboard");
+        exit();
     }
 
     public function contLikes(){

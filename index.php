@@ -8,7 +8,7 @@ $noticiaController = new NoticiaController();
 
 $action = $_GET['action'] ?? 'dashboard';
 
-switch($action){
+switch ($action) {
     case 'dashboard':
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();
@@ -18,40 +18,52 @@ switch($action){
     case 'acercaDe':
         include './Views/Includes/navbar.php';
         include './Views/acercaDe.php';
-        break; 
+        break;
     case 'iniciarSesion':
         include './Views/Includes/navbar.php';
         include './Views/usuarios/login.php';
-        break;       
+        break;
     case 'getNoticiaById':
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-        $id = $_GET['id'];
-        $noticia = $noticiaController->getNoticiaById($id);
-        include './Views/Includes/navbar.php';
-        include './Views/Noticias/showNoticia.php';
+            $id = $_GET['id'];
+            $noticia = $noticiaController->getNoticiaById($id);
+            include './Views/Includes/navbar.php';
+            include './Views/Noticias/showNoticia.php';
         } else {
-        echo "Error: ID de noticia no válido.";
+            echo "Error: ID de noticia no válido.";
         }
         break;
-    case 'actualizarNoticiaDestacada':
-        $noticiaController->actualizarNoticiaDestacada();
+    case 'createNoticia':
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $noticiaController->createNoticia();
+        } else {
+            include './Views/Includes/navbar.php';
+            include './Views/Noticias/createNoticia.php';
+        }
+        break;
+    case 'updateNoticia':
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $noticiaController->updateNoticia();
+            include './Views/Includes/navbar.php';
+            include './Views/dashboard.php';
+        } else {
+            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $id = $_GET['id'];
+                $noticia = $noticiaController->getNoticiaById($id);
+                include './Views/Includes/navbar.php';
+                include './Views/Noticias/updateNoticia.php';
+            } else {
+                echo "Error: ID de noticia no válido.";
+            }
+        }
         break;
     case 'deleteNoticia':
-        $noticiaController->deleteNoticia();
-        break;
-    case 'createNoticia':
-         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $noticiaController->createNoticia();
-            }else{
-                include './Views/Includes/navbar.php';
-                include './Views/Noticias/createNoticia.php';
-            }
-            break;
-    case 'editNoticia':
-        $noticiaController->editNoticia();
-        break;
-    case 'comentarios':
-        $noticiaController->comentarios();
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $id = $_GET['id'];
+            $noticia = $noticiaController->deleteNoticia($id);
+        } else {
+            echo "Error: ID de noticia no válido.";
+        }
         break;
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
@@ -59,4 +71,4 @@ switch($action){
         include './Views/Includes/navbar.php';
         include './Views/dashboard.php';
         break;
-} 
+}
