@@ -1,9 +1,9 @@
     <style>
         .noticia {
             max-width: 800px;
-            margin: 20px auto;
+            margin: 2cm auto;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 20px;
             background: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }

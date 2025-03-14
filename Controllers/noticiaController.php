@@ -21,18 +21,13 @@ class NoticiaController {
         if (!isset($id) || !is_numeric($id)) {
             die("Error: ID de noticia inválido.");
         }
-    
         $noticia = $this->noticiaModel->getNoticiaById($id);
-    
         if (!$noticia) {
             die("Error: La noticia no existe.");
         }
-    
-        return $noticia; // ✅ Devolver la noticia
+        return $noticia;
     }
     
-    
-
     public function getComentarios($id) {
         $id = $_GET['id']?? '';
         $this->noticiaModel->getComentarios($id);
@@ -43,7 +38,7 @@ class NoticiaController {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verificar si se subió una imagen correctamente
             if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-                $directorioDestino = "Assets/Images/Noticias/Thumbnail/";
+                $directorioDestino = "./Assets/Images/Noticias/Thumbnail/";
                 $nombreImagen = basename($_FILES["imagen"]["name"]);
                 $rutaCompleta = $directorioDestino . $nombreImagen;
     
@@ -78,36 +73,35 @@ class NoticiaController {
             $id         = $_POST['id'];
             $titulo     = $_POST['titulo'];
             $cuerpo     = $_POST['cuerpo'];
-            $destacada  = isset($_POST['destacada']) ? 1 : 0; // Si no está marcado, será 0
+            $destacada  = isset($_POST['destacada']) ? 1 : 0; 
     
             // Obtener la noticia actual para mantener la imagen si no se cambia
             $noticiaActual = $this->noticiaModel->getNoticiaById($id);
             $imagen = $noticiaActual['imagen']; // Mantener la imagen actual por defecto
     
             // Manejo de imagen: Si se sube una nueva, reemplazarla
-            if (!empty($_FILES['imagen']['name'])) {
-                $nombreArchivo = basename($_FILES['imagen']['name']); // Mantener el nombre original del archivo
-                $imagen = $this->subirImagen($_FILES['imagen'], $nombreArchivo);
+            if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                $directorioDestino = "./Assets/Images/Noticias/Thumbnail/";
+                $nombreImagen = basename($_FILES["imagen"]["name"]);
+                $rutaCompleta = $directorioDestino . $nombreImagen;
+    
+                // Mover la imagen al directorio de destino
+                if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $rutaCompleta)) {
+                    $imagen = $nombreImagen; // Actualizar la imagen solo si se subió correctamente
+                } else {
+                    echo "Error al subir la imagen.";
+                    exit;
+                }
             }
     
             // Actualizar noticia en la base de datos
             $this->noticiaModel->updateNoticia($id, $imagen, $titulo, $cuerpo, $destacada);
     
+            // Redirigir a dashboard
             header("Location: index.php?action=dashboard");
+            exit;
         }
     }
-
-    private function subirImagen($archivo) {
-        $directorioDestino = "./Assets/Images/Noticias/Thumbnail/"; // Carpeta donde guardar las imágenes
-        $nombreArchivo = time() . "_" . basename($archivo["name"]);
-        $rutaCompleta = $directorioDestino . $nombreArchivo;
-    
-        // Mover la imagen al directorio de destino
-        if (move_uploaded_file($archivo["tmp_name"], $rutaCompleta)) {
-            return $rutaCompleta; // Devolver la ruta de la imagen guardada
-        }
-        return null; // Si falla, devolver null
-    }    
 
     public function deleteNoticia(){
         $id = $_GET['id'] ?? '';

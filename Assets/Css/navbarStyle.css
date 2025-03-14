@@ -197,7 +197,7 @@ body {
   font-size: 18pt;
 }
 .search-button {
-  width: 40px;
+  width: 1.2cm;
   height: 1.2cm;
   background-color: var(--active-bg);
   border: none;

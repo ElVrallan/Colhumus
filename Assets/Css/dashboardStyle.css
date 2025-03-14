@@ -149,6 +149,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 2;
 }
 .floating-button svg {
   width: 24px;

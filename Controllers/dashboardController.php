@@ -21,11 +21,11 @@ class DashboardController{
         return $this->dashboardController->getNoticiaDestacada();
     }
     
-    public function getListaNoticias() {
+    public function getListaNoticias(){
         return $this->dashboardController->getListaNoticias();
     }
 
-    public function getNoticiaById() {
+    public function getNoticiaById(){
         $id = $_GET['id'] ?? '';
         return $this->dashboardController->getNoticiaById($id);
     }
@@ -33,16 +33,4 @@ class DashboardController{
     public function abreviacionNumerica(){
         return $this->dashboardController->abreviacionNumerica();
     }
-
-    // public function viewDashboard(){
-    //     return $this->dashboardController->viewDashboard();
-    // }
-
-    // public function contacto(){
-    //     return $this->dashboardController->contacto();
-    // }
-
-    // public function viewIniciarSesion(){
-    //     return $this->dashboardController->viewIniciarSesion();
-    // }
 }
