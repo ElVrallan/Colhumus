@@ -33,4 +33,23 @@ class DashboardController{
     public function abreviacionNumerica(){
         return $this->dashboardController->abreviacionNumerica();
     }
+
+    function abbreviateNumber($number) {
+    $number = (int)$number;
+    if ($number > 999) {
+        $abrev = substr((string)$number, 0, 2);
+        $result = implode(',', str_split($abrev));
+        if ($number > 999999999) {
+            $result .= ' B';
+        } elseif ($number > 999999) {
+            $result .= ' M';
+        } elseif ($number > 999) {
+            $result .= 'K';
+        }
+        return $result;
+    } else {
+        return $number;
+    }
+}
+
 }

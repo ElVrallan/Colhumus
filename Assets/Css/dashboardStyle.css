@@ -1,3 +1,16 @@
+/* ============================
+   VARIABLES Y FUENTES
+============================ */
+:root {
+  --color-fondo: #A9E159;
+  --color-destacado: #72CB10;
+  --color-boton: #468704;
+  --color-blanco: #FFFFFF;
+  --color-negro: #000000;
+  --fuente-titulo: 'Noto Sans JP', sans-serif;
+  --fuente-cuerpo: 'RobotoVariable', sans-serif;
+}
+
 /* Fuente para el título (Noto Sans JP) */
 @font-face {
   font-family: "Noto Sans JP";
@@ -14,45 +27,53 @@
   font-style: normal;
 }
 
+/* ============================
+   ESTILOS GLOBALES
+============================ */
 body {
-  background-color: #A9E159;
+  background-color: var(--color-fondo);
   margin: 0;
   padding: 0;
 }
 
+/* ============================
+   NOTICIA DESTACADA
+============================ */
 .noticia-destacada {
   position: fixed;
   top: 2cm;
   left: 0.5cm;
   width: 10.1cm;
   height: 85%;
-  background-color: #72CB10;
+  background-color: var(--color-destacado);
   border-radius: 20px;
   padding: 10px;
 }
 
-/* Contenedor Flexbox para las noticias */
+/* ============================
+   CONTENEDOR DE NOTICIAS
+============================ */
 .noticias-container {
   display: flex;
   flex-direction: column;
-  margin-left: 10.6cm;
-  margin-right: 0.1cm;
   gap: 20px;
+  margin: 0 0.1cm 0 10.6cm;
   padding-top: 2cm;
 }
 
 .noticia {
-  position: relative; /* Necesario para que el botón absoluto funcione dentro */
+  position: relative;
   height: 300px;
-  background-color: #FFFFFF;
+  background-color: var(--color-blanco);
   border-radius: 20px;
   padding: 10px;
   margin: 0 20px;
   overflow: hidden;
 }
 
+/* Botón invisible para cubrir la noticia */
 .verNoticiaButton {
-  position: absolute;  /* Hace que el botón cubra solo la noticia */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -61,10 +82,12 @@ body {
   border: none;
   opacity: 0;
   cursor: pointer;
-  z-index: 2; /* Asegura que esté sobre el contenido de la noticia */
+  z-index: 2;
 }
 
-/* Imagen de la noticia */
+/* ============================
+   IMAGEN Y CONTENIDO DE LA NOTICIA
+============================ */
 .imagen-noticia {
   width: 33.33%;
   float: left;
@@ -81,16 +104,18 @@ body {
   display: block;
 }
 
+.contenido-noticia {
+  margin-left: auto;
+}
+
 /* Título de la noticia */
 .titulo-noticia {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Muestra máximo 2 líneas */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* Otros estilos */
-  
-  font-family: 'Noto Sans JP', sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--fuente-titulo);
   font-size: 18pt;
   font-weight: 700;
   line-height: 1.1;
@@ -98,49 +123,47 @@ body {
   margin-bottom: 5px;
 }
 
-/* Contenido de la noticia */
-.contenido-noticia {
-  margin-left: auto;
+/* "Ver más..." centrado */
+.verMas {
+  text-align: center;
+  display: block;
+  width: 100%;
 }
 
-/* Cuerpo de la noticia con división en columnas */
+/* Cuerpo de la noticia en dos columnas */
 .cuerpo-noticia {
   position: relative;
-  font-family: "RobotoVariable", sans-serif;
+  font-family: var(--fuente-cuerpo);
   font-size: 13pt;
   line-height: 1.1;
-  column-count: 2;     
-  column-gap: 20px;   
+  column-count: 2;
+  column-gap: 20px;
   text-align: justify;
-  width: auto;           
   height: 155px;
   overflow: hidden;
 }
 
+/* Línea decorativa en el cuerpo */
 .cuerpo-noticia::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 5px; /* Grosor de la línea */
-  background: #000; /* Color de la línea */
-  border-radius: 2.5px; /* Esquinas redondeadas */
-  left: calc(50% - 2.5px); /* Centrar la línea en el medio */
-  pointer-events: none; /* Permite interactuar con el contenido */
+  width: 5px;
+  background: var(--color-negro);
+  border-radius: 2.5px;
+  left: calc(50% - 2.5px);
+  pointer-events: none;
 }
 
-.estadisticas{
-  width: 200px; /* Define el espacio delimitado */
-  display: flex;
-  justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
-  align-items: center; /* Alinea los elementos verticalmente en el centro */
-}
-
+/* ============================
+   BOTÓN FLOTANTE
+============================ */
 .floating-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #468704;
+  background-color: var(--color-boton);
   border: none;
   border-radius: 20px;
   width: 60px;
@@ -149,82 +172,71 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 2;
+  z-index: 4;
 }
+
 .floating-button svg {
   width: 24px;
   height: 24px;
-  fill: white;
+  fill: var(--color-blanco);
 }
 
-/* Contenedor de botones para las acciones */
+/* ============================
+   FECHA, BOTONES Y ESTADÍSTICAS
+============================ */
+.fecha-botones {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: -10px;
+}
+
 .accion-buttons {
   display: flex;
-  gap: 10px; /* Espacio entre botones, ajústalo según sea necesario */
-  margin-top: 10px; /* Espacio superior para separar de las estadísticas */
+  gap: 5px;
+  position: relative;
+  top: 13px;
+  z-index: 3;
 }
 
-/* Estilo de cada botón de acción */
-.accion-button {
-  background-color: #468704;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 10px; /* Puedes ajustar padding para igualar la altura deseada */
-  cursor: pointer;
-}
-
-/* Aseguramos que los íconos SVG sean blancos y tengan un pequeño margen respecto al texto */
-.accion-button svg {
-  fill: white;
-  margin-left: 5px;
-}
-
-/* Contenedor que agrupa estadísticas y botones */
+/* Estadísticas (likes, comentarios, compartidos) */
 .estadisticas {
-  float: left;
+  position: relative;
+  top: -15px;
+  width: 200px;
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
   align-items: center;
-  font-family: "RobotoVariable", sans-serif;
+  gap: 10px;
+  font-family: var(--fuente-cuerpo);
   font-size: 14pt;
 }
 
-/* Contenedor independiente de botones (alineado a la derecha) */
-.accion-buttons {
-  float: right;
-  display: flex;
-  gap: 10px;
-}
-
-/* Estilo de cada botón de acción */
+/* Botones de acción */
 .accion-button {
-  background-color: #468704;
+  background-color: var(--color-boton);
   border: none;
   border-radius: 10px;
-  color: white;
-  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--color-blanco);
+  font-family: var(--fuente-titulo);
   font-size: 13pt;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 10px; /* Ajusta este valor según la altura deseada */
+  padding: 5px 10px;
   cursor: pointer;
 }
 
-/* Íconos SVG en blanco con un pequeño margen */
 .accion-button svg {
-  fill: white;
+  fill: var(--color-blanco);
   margin-left: 5px;
 }
 
-/* Clear floats */
+/* ============================
+   UTILIDADES
+============================ */
 .clear {
   clear: both;
 }
