@@ -44,7 +44,7 @@ body {
   top: 2cm;
   left: 0.5cm;
   width: 10.1cm;
-  height: 85%;
+  height: 87%;
   background-color: var(--color-destacado);
   border-radius: 20px;
   padding: 10px;
@@ -71,7 +71,7 @@ body {
   overflow: hidden;
 }
 
-/* Botón invisible para cubrir la noticia */
+/* Botón invisible para ver noticia completa */
 .verNoticiaButton {
   position: absolute;
   top: 0;
@@ -89,10 +89,9 @@ body {
    IMAGEN Y CONTENIDO DE LA NOTICIA
 ============================ */
 .imagen-noticia {
-  width: 33.33%;
+  width: 300px;
   float: left;
   box-sizing: border-box;
-  margin-right: 10px;
 }
 
 .imagen-noticia img {
@@ -104,11 +103,6 @@ body {
   display: block;
 }
 
-.contenido-noticia {
-  margin-left: auto;
-}
-
-/* Título de la noticia */
 .titulo-noticia {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -123,14 +117,12 @@ body {
   margin-bottom: 5px;
 }
 
-/* "Ver más..." centrado */
 .verMas {
   text-align: center;
   display: block;
   width: 100%;
 }
 
-/* Cuerpo de la noticia en dos columnas */
 .cuerpo-noticia {
   position: relative;
   font-family: var(--fuente-cuerpo);
@@ -157,6 +149,54 @@ body {
 }
 
 /* ============================
+   FECHA, BOTONES Y ESTADÍSTICAS
+============================ */
+.fecha-botones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.accion-buttons {
+  display: flex;
+  gap: 5px;
+  margin-top: 13px;
+  z-index: 3;
+}
+
+.estadisticas {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fuente-cuerpo);
+  font-size: 12pt;
+  margin-top: -15px;
+}
+
+.accion-button {
+  background-color: var(--color-boton);
+  border: none;
+  border-radius: 10px;
+  color: var(--color-blanco);
+  font-family: var(--fuente-titulo);
+  font-size: 13pt;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.accion-button svg {
+  fill: var(--color-blanco);
+  margin-left: 5px;
+}
+
+/* ============================
    BOTÓN FLOTANTE
 ============================ */
 .floating-button {
@@ -180,60 +220,6 @@ body {
   height: 24px;
   fill: var(--color-blanco);
 }
-
-/* ============================
-   FECHA, BOTONES Y ESTADÍSTICAS
-============================ */
-.fecha-botones {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  top: -10px;
-}
-
-.accion-buttons {
-  display: flex;
-  gap: 5px;
-  position: relative;
-  top: 13px;
-  z-index: 3;
-}
-
-/* Estadísticas (likes, comentarios, compartidos) */
-.estadisticas {
-  position: relative;
-  top: -15px;
-  width: 200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--fuente-cuerpo);
-  font-size: 14pt;
-}
-
-/* Botones de acción */
-.accion-button {
-  background-color: var(--color-boton);
-  border: none;
-  border-radius: 10px;
-  color: var(--color-blanco);
-  font-family: var(--fuente-titulo);
-  font-size: 13pt;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.accion-button svg {
-  fill: var(--color-blanco);
-  margin-left: 5px;
-}
-
 /* ============================
    UTILIDADES
 ============================ */

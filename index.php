@@ -12,6 +12,7 @@ switch ($action) {
     case 'dashboard':
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();
+        require_once './Helpers/helper.php';
         include './Views/Includes/navbar.php';
         include './Views/dashboard.php';
         break;
@@ -68,6 +69,7 @@ switch ($action) {
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();
+        require_once './Helpers/helper.php';
         include './Views/Includes/navbar.php';
         include './Views/dashboard.php';
         break;
