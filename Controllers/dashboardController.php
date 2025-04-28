@@ -3,11 +3,11 @@
 require_once './Models/dashboardModel.php';
 require_once './Config/database.php';
 
-class DashboardController{
+class DashboardController {
     private $conectar;
     private $dashboardController;
 
-    public function dashboard(){
+    public function dashboard() {
         require './Views/dashboard.php';
     }
 
@@ -17,15 +17,15 @@ class DashboardController{
         $this->dashboardController= new DashboardModel($this->conectar);
     }
 
-    public function getNoticiaDestacada(){
+    public function getNoticiaDestacada() {
         return $this->dashboardController->getNoticiaDestacada();
     }
-    
-    public function getListaNoticias(){
+
+    public function getListaNoticias() {
         return $this->dashboardController->getListaNoticias();
     }
 
-    public function getNoticiaById(){
+    public function getNoticiaById() {
         $id = $_GET['id'] ?? '';
         return $this->dashboardController->getNoticiaById($id);
     }

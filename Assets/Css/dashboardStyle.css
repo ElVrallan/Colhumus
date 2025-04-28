@@ -11,7 +11,7 @@
   --fuente-cuerpo: 'RobotoVariable', sans-serif;
 }
 
-/* Fuente para el título (Noto Sans JP) */
+/* Fuentes personalizadas */
 @font-face {
   font-family: "Noto Sans JP";
   src: url("../Fonts/NotoSansJP-ExtraBold.ttf") format("truetype");
@@ -19,7 +19,6 @@
   font-style: normal;
 }
 
-/* Fuente para el cuerpo (Roboto Variable) */
 @font-face {
   font-family: "RobotoVariable";
   src: url("../Fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
@@ -48,6 +47,15 @@ body {
   background-color: var(--color-destacado);
   border-radius: 20px;
   padding: 10px;
+}
+
+.noticia-destacada img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 15px;
+  display: block;
 }
 
 /* ============================
@@ -220,6 +228,7 @@ body {
   height: 24px;
   fill: var(--color-blanco);
 }
+
 /* ============================
    UTILIDADES
 ============================ */
