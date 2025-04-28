@@ -27,10 +27,6 @@ class DashboardModel{
         return $stmt->fetch();
     }
 
-    public function abreviacionNumerica(){
-        
-    }
-
     // public function viewDashboard(){
     //     return $this->dashboardController->viewDashboard();
     // }

@@ -66,6 +66,20 @@ switch ($action) {
             echo "Error: ID de noticia no válido.";
         }
         break;
+    case 'contLikes':
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $noticiaController->contLikes();
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        break;
+    case 'contCompartir':
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $noticiaController->contCompartir();
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        break;
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();

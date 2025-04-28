@@ -118,8 +118,15 @@ class NoticiaController {
     }
 
     public function contLikes(){
-        $id = $_GET['id']?? '';
-        $this->noticiaModel->contLikes($id);
+        $id = $_GET['id'] ?? '';
+        if (is_numeric($id)) {
+            $this->noticiaModel->contLikes($id);
+            $noticia = $this->noticiaModel->getNoticiaById($id);
+            echo json_encode(['success' => true, 'likes' => $noticia['likes']]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit();
     }
 
     public function contComentarios(){
@@ -128,7 +135,14 @@ class NoticiaController {
     }
 
     public function contCompartir(){
-        $id = $_GET['id']?? '';
-        $this->noticiaModel->contCompartir($id);
+        $id = $_GET['id'] ?? '';
+        if (is_numeric($id)) {
+            $this->noticiaModel->contCompartir($id);
+            $noticia = $this->noticiaModel->getNoticiaById($id);
+            echo json_encode(['success' => true, 'shares' => $noticia['conteo_compartidas']]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit();
     }
 }
