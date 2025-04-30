@@ -58,6 +58,46 @@ body {
   display: block;
 }
 
+.cuerpo-noticia-destacada {
+  position: relative;
+  font-family: var(--fuente-cuerpo);
+  font-size: 13pt;
+  line-height: 1.1;
+  text-align: justify;
+  height: 120px;
+  overflow: hidden;
+}
+
+.estadisticas-fecha-destacada {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--fuente-cuerpo);
+  font-size: 12pt;
+}
+
+.accion-buttons-destacada {
+  display: flex;
+  justify-content: space-between;
+  z-index: 3; /* Ensure buttons are above other elements */
+  position: relative; /* Establish a stacking context */
+}
+
+.verNoticiaButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2; /* Ensure this is below the action buttons but above other elements */
+  pointer-events: auto; /* Allow clicks on the button */
+}
+
 /* ============================
    CONTENEDOR DE NOTICIAS
 ============================ */
@@ -77,20 +117,6 @@ body {
   padding: 10px;
   margin: 0 20px;
   overflow: hidden;
-}
-
-/* Botón invisible para ver noticia completa */
-.verNoticiaButton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
 }
 
 /* ============================
@@ -123,6 +149,7 @@ body {
   line-height: 1.1;
   padding: 2.5px 0;
   margin-bottom: 5px;
+  text-align: center;
 }
 
 .verMas {
@@ -221,6 +248,7 @@ body {
   justify-content: center;
   cursor: pointer;
   z-index: 4;
+  box-shadow: #000000 0px 0px 10px 0px;
 }
 
 .floating-button svg {
