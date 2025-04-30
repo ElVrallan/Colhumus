@@ -43,10 +43,21 @@ body {
   top: 2cm;
   left: 0.5cm;
   width: 10.1cm;
-  height: 87%;
+  height: 87vh;
   background-color: var(--color-destacado);
   border-radius: 20px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.noticia-destacada form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
 }
 
 .noticia-destacada img{
@@ -55,48 +66,45 @@ body {
   object-fit: cover;
   object-position: center;
   border-radius: 15px;
-  display: block;
 }
 
 .cuerpo-noticia-destacada {
-  position: relative;
+  flex-grow: 1;
+  overflow-y: hidden;
+  min-height: 0;
   font-family: var(--fuente-cuerpo);
   font-size: 13pt;
   line-height: 1.1;
   text-align: justify;
-  height: 120px;
-  overflow: hidden;
+  margin-top: 10px;
+}
+
+.verMas {
+  margin-top: 5px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .estadisticas-fecha-destacada {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--fuente-cuerpo);
-  font-size: 12pt;
+display: flex;
+font-size: 10pt;
+justify-content: space-between;
 }
 
 .accion-buttons-destacada {
+  margin-top: auto;
   display: flex;
-  justify-content: space-between;
-  z-index: 3; /* Ensure buttons are above other elements */
-  position: relative; /* Establish a stacking context */
+  justify-content: space-around;
 }
 
 .verNoticiaButton {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
+  inset: 0;
+  z-index: 1;
   opacity: 0;
   cursor: pointer;
-  z-index: 2; /* Ensure this is below the action buttons but above other elements */
-  pointer-events: auto; /* Allow clicks on the button */
 }
+
 
 /* ============================
    CONTENEDOR DE NOTICIAS
@@ -141,7 +149,6 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
   text-overflow: ellipsis;
   font-family: var(--fuente-titulo);
   font-size: 18pt;
