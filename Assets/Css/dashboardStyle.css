@@ -76,7 +76,6 @@ body {
   font-size: 13pt;
   line-height: 1.1;
   text-align: justify;
-  margin-top: 10px;
 }
 
 .verMas {
@@ -95,6 +94,7 @@ justify-content: space-between;
   margin-top: auto;
   display: flex;
   justify-content: space-around;
+  z-index: 3;
 }
 
 .verNoticiaButton {
