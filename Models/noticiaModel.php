@@ -30,6 +30,12 @@ class NoticiaModel{
     }
 
     public function createNoticia($imagen, $titulo, $cuerpo, $destacada) {
+        if ($destacada) {
+            // Unset the "destacada" flag for all other news items
+            $queryUnsetDestacada = "UPDATE " . $this->noticias . " SET destacada = 0 WHERE destacada = 1";
+            $this->conn->prepare($queryUnsetDestacada)->execute();
+        }
+
         $query = "INSERT INTO ".$this->noticias." 
                   (imagen, titulo, cuerpo, fecha_publicacion, likes, conteo_comentarios, conteo_compartidas, destacada) 
                   VALUES (?, ?, ?, CURDATE(), 0, 0, 0, ?)";

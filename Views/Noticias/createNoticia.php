@@ -1,37 +1,5 @@
-    <style>
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #468704;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #356503;
-        }
-    </style>
+<link rel="stylesheet" href="./Assets/Css/createNoticia.css">
+
 </head>
 <body>
     <div class="form-container">
@@ -42,18 +10,22 @@
             </div>
             <div class="form-group">
                 <label for="titulo">Título</label>
-                <input type="text" name="titulo" id="titulo" required>
+                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el título de la noticia" required>
             </div>
             <div class="form-group">
                 <label for="cuerpo">Cuerpo</label>
-                <textarea name="cuerpo" id="cuerpo" rows="5" required></textarea>
+                <textarea name="cuerpo" id="cuerpo" placeholder="Escriba el contenido de la noticia aquí" required></textarea>
             </div>
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" name="destacada" value="1"> Destacada
-                </label>
+            <div class="form-group checkbox-group">
+                <label for="destacada">Destacada</label>
+                <input type="checkbox" name="destacada" id="destacada" value="1">
             </div>
-            <button type="submit">Subir Noticia</button>
+            <div class="button-group">
+                <a href="index.php">
+                    <button type="button" class="cancel-button">Cancelar</button>
+                </a>
+                <button type="submit">Subir Noticia</button>
+            </div>
         </form>
     </div>
 </body>
