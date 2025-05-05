@@ -18,6 +18,13 @@
             <div class="form-group">
                 <label for="cuerpo">Cuerpo</label>
                 <textarea name="cuerpo" id="cuerpo" required oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"><?= htmlspecialchars($noticia['cuerpo']); ?></textarea>
+                <script>
+                    // Adjust the height of the textarea dynamically based on its content
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const cuerpoTextarea = document.getElementById('cuerpo');
+                        cuerpoTextarea.style.height = cuerpoTextarea.scrollHeight + 'px';
+                    });
+                </script>
             </div>
             <div class="form-group checkbox-group">
                 <label for="destacada">Destacada</label>
