@@ -63,24 +63,24 @@ class NoticiaModel{
         return $stmt->execute([$id]);
     }
 
-    public function actualizarNoticiaDestacada($id) {
-        $this->conn->beginTransaction();
-        try {
-            $queryDesactivar = "UPDATE " . $this->noticias . " SET destacada = 0 WHERE destacada = 1";
-            $stmtDesactivar = $this->conn->prepare($queryDesactivar);
-            $stmtDesactivar->execute();
+    // public function actualizarNoticiaDestacada($id) {
+    //     $this->conn->beginTransaction();
+    //     try {
+    //         $queryDesactivar = "UPDATE " . $this->noticias . " SET destacada = 0 WHERE destacada = 1";
+    //         $stmtDesactivar = $this->conn->prepare($queryDesactivar);
+    //         $stmtDesactivar->execute();
     
-            $queryActivar = "UPDATE " . $this->noticias . " SET destacada = 1 WHERE id = ?";
-            $stmtActivar = $this->conn->prepare($queryActivar);
-            $stmtActivar->execute([$id]);
+    //         $queryActivar = "UPDATE " . $this->noticias . " SET destacada = 1 WHERE id = ?";
+    //         $stmtActivar = $this->conn->prepare($queryActivar);
+    //         $stmtActivar->execute([$id]);
     
-            $this->conn->commit();
-        } catch (Exception $e) {
-            // Si hay un error, revertir la transacción
-            $this->conn->rollBack();
-            throw $e;
-        }
-    }
+    //         $this->conn->commit();
+    //     } catch (Exception $e) {
+    //         // Si hay un error, revertir la transacción
+    //         $this->conn->rollBack();
+    //         throw $e;
+    //     }
+    // }
     
     public function contLikes($id) {
         $query = "UPDATE " . $this->noticias . " SET likes = likes + 1 WHERE id = ?";

@@ -27,16 +27,11 @@ class DashboardModel{
         return $stmt->fetch();
     }
 
-    // public function viewDashboard(){
-    //     return $this->dashboardController->viewDashboard();
-    // }
-
-    // public function contacto(){
-    //     return $this->dashboardController->contacto();
-    // }
-
-    // public function viewIniciarSesion(){
-    //     return $this->dashboardController->viewIniciarSesion();
-    // }
+    public function searchNoticias($query) {
+        $stmt = $this->conn->prepare("SELECT * FROM " . $this->noticias . " WHERE titulo LIKE ? OR cuerpo LIKE ? ORDER BY fecha_publicacion DESC");
+        $searchTerm = '%' . $query . '%';
+        $stmt->execute([$searchTerm, $searchTerm]);
+        return $stmt->fetchAll();
+    }
 }
 ?>

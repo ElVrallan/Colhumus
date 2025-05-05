@@ -80,6 +80,10 @@ switch ($action) {
             echo json_encode(['success' => false]);
         }
         break;
+    case 'searchNoticias':
+        $resultados = $dashboardController->searchNoticias();
+        require './Views/searchResults.php';
+        break;
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();

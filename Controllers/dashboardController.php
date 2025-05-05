@@ -29,4 +29,9 @@ class DashboardController {
         $id = $_GET['id'] ?? '';
         return $this->dashboardController->getNoticiaById($id);
     }
+
+    public function searchNoticias() {
+        $query = $_GET['query'] ?? '';
+        return $this->dashboardController->searchNoticias($query);
+    }
 }
