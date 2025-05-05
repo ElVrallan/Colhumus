@@ -44,6 +44,12 @@ class NoticiaModel{
     }
 
     public function updateNoticia($id, $imagen, $titulo, $cuerpo, $destacada) {
+        if ($destacada) {
+            // Unset the "destacada" flag for all other news items
+            $queryUnsetDestacada = "UPDATE " . $this->noticias . " SET destacada = 0 WHERE destacada = 1";
+            $this->conn->prepare($queryUnsetDestacada)->execute();
+        }
+
         $query = "UPDATE " . $this->noticias . " 
                   SET imagen = ?, titulo = ?, cuerpo = ?, destacada = ? 
                   WHERE id = ?";

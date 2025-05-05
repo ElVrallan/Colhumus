@@ -14,7 +14,7 @@
             </div>
             <div class="form-group">
                 <label for="cuerpo">Cuerpo</label>
-                <textarea name="cuerpo" id="cuerpo" placeholder="Escriba el contenido de la noticia aquí" required></textarea>
+                <textarea name="cuerpo" id="cuerpo" placeholder="Escriba el contenido de la noticia aquí" required oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"></textarea>
             </div>
             <div class="form-group checkbox-group">
                 <label for="destacada">Destacada</label>
