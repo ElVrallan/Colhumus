@@ -81,8 +81,11 @@ switch ($action) {
         }
         break;
     case 'searchNoticias':
+        $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $resultados = $dashboardController->searchNoticias();
-        require './Views/searchResults.php';
+        require_once './Helpers/helper.php';
+        include './Views/Includes/navbar.php';
+        require './Views/Noticias/resultadosBusqueda.php';
         break;
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
