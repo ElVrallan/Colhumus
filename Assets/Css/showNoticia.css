@@ -122,6 +122,7 @@ body {
 
 .texto-audio {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .texto-audio button {
