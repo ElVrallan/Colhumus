@@ -225,20 +225,4 @@
 
 </body>
 
-<script>
-// Ensure the video enters fullscreen mode correctly
-const video = document.querySelector('.noticia-destacada video');
-if (video) {
-  video.addEventListener('click', () => {
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) { // Safari
-      video.webkitRequestFullscreen();
-    } else if (video.msRequestFullscreen) { // IE/Edge
-      video.msRequestFullscreen();
-    }
-  });
-}
-</script>
-
 </html>

@@ -16,8 +16,16 @@
             <input type="hidden" name="action" value="getNoticiaById">
             <input type="hidden" name="id" value="<?= htmlspecialchars($noticiaDestacada['id']); ?>">
 
-            <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>">
-            <div class="titulo-noticia"><?= htmlspecialchars($noticiaDestacada['titulo']); ?></div>
+            <div class="imagen-noticia-destacada">
+                <?php if (pathinfo($noticiaDestacada['imagen'], PATHINFO_EXTENSION) === 'mp4'): ?>
+                    <video controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
+                        <source src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                <?php else: ?>
+                    <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>">
+                <?php endif; ?>
+            </div>            <div class="titulo-noticia"><?= htmlspecialchars($noticiaDestacada['titulo']); ?></div>
             <div class="cuerpo-noticia-destacada"><?= htmlspecialchars($noticiaDestacada['cuerpo']); ?></div>
             <p class="verMas">Ver más...</p>
             <div class="estadisticas-fecha-destacada">
@@ -93,9 +101,15 @@
             <input type="hidden" name="id" value="<?= htmlspecialchars($noticia['id']); ?>">
 
             <article class="noticia">
-                <div class="imagen-noticia">
-                    <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>"
-                        loading="lazy">
+            <div class="imagen-noticia">
+                    <?php if (pathinfo($noticia['imagen'], PATHINFO_EXTENSION) === 'mp4'): ?>
+                        <video controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
+                            <source src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>" type="video/mp4">
+                            Tu navegador no soporta la reproducción de videos.
+                        </video>
+                    <?php else: ?>
+                        <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>" loading="lazy">
+                    <?php endif; ?>
                 </div>
                 <div class="contenido-noticia">
                     <div class="titulo-noticia"><?= htmlspecialchars($noticia['titulo']); ?></div>
