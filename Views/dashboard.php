@@ -18,7 +18,16 @@
             <input type="hidden" name="action" value="getNoticiaById">
             <input type="hidden" name="id" value="<?= htmlspecialchars($noticiaDestacada['id']); ?>">
 
-            <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>">
+            <div class="imagen-noticia-destacada">
+                <?php if (pathinfo($noticiaDestacada['imagen'], PATHINFO_EXTENSION) === 'mp4'): ?>
+                    <video controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
+                        <source src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                <?php else: ?>
+                    <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>">
+                <?php endif; ?>
+            </div>
             <div class="titulo-noticia"><?= htmlspecialchars($noticiaDestacada['titulo']); ?></div>
             <div class="cuerpo-noticia-destacada"><?= htmlspecialchars($noticiaDestacada['cuerpo']); ?></div>
             <p class="verMas">Ver más...</p>
@@ -104,8 +113,14 @@
             <article class="noticia">
                 <!-- Imagen de la noticia -->
                 <div class="imagen-noticia">
-                    <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>"
-                        loading="lazy">
+                    <?php if (pathinfo($noticia['imagen'], PATHINFO_EXTENSION) === 'mp4'): ?>
+                        <video controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
+                            <source src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>" type="video/mp4">
+                            Tu navegador no soporta la reproducción de videos.
+                        </video>
+                    <?php else: ?>
+                        <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>" loading="lazy">
+                    <?php endif; ?>
                 </div>
 
                 <!-- Contenido de la noticia -->
@@ -209,5 +224,21 @@
     </form>
 
 </body>
+
+<script>
+// Ensure the video enters fullscreen mode correctly
+const video = document.querySelector('.noticia-destacada video');
+if (video) {
+  video.addEventListener('click', () => {
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) { // Safari
+      video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { // IE/Edge
+      video.msRequestFullscreen();
+    }
+  });
+}
+</script>
 
 </html>

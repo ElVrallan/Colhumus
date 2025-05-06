@@ -6,15 +6,36 @@ function likeNoticia(id, likeCountId) {
         if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
             if (response.success) {
+                // Incrementar el conteo de likes en la noticia destacada
                 const likeCountElement = document.getElementById(likeCountId);
-                const likeText = likeCountElement.querySelector('.like-text');
-                if (likeText) {
-                    likeText.textContent = response.likes;
+                if (likeCountElement) {
+                    const likeTextElement = likeCountElement.querySelector('.like-text');
+                    if (likeTextElement) {
+                        let currentLikes = parseInt(likeTextElement.textContent.replace(/,/g, '')) || 0;
+                        likeTextElement.textContent = currentLikes + 1;
+                    }
                 }
+
+                // Incrementar el conteo de likes en la lista de noticias, excluyendo la destacada
+                const regularLikeCountElements = document.querySelectorAll(`#like-count-${id}`);
+                regularLikeCountElements.forEach((element) => {
+                    if (element !== likeCountElement) { // Evitar duplicar la actualización
+                        const likeTextElement = element.querySelector('.like-text');
+                        if (likeTextElement) {
+                            let currentLikes = parseInt(likeTextElement.textContent.replace(/,/g, '')) || 0;
+                            likeTextElement.textContent = currentLikes + 1;
+                        }
+                    }
+                });
             } else {
                 alert('Error al dar like.');
             }
+        } else {
+            console.error('Error en la solicitud AJAX.');
         }
+    };
+    xhr.onerror = function() {
+        console.error('Error de red al intentar dar like.');
     };
     xhr.send();
 }

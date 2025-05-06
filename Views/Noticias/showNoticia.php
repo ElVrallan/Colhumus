@@ -1,4 +1,4 @@
-    <style>
+<style>
         .noticia {
             max-width: 800px;
             margin: 2cm auto;
@@ -92,6 +92,23 @@
         .floating-button.delete {
             background-color: #d9534f;
         }
+
+        /* Ajuste para dar prioridad a los estilos de pantalla completa en showNoticia */
+        .imagen-noticia video:fullscreen {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important; /* Asegura que el video se muestre completamente */
+            border-radius: 0 !important; /* Elimina bordes redondeados en pantalla completa */
+            background-color: black !important; /* Fondo negro para evitar distracciones */
+        }
+
+        .imagen-noticia video:-webkit-full-screen {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important; /* Asegura que el video se muestre completamente */
+            border-radius: 0 !important; /* Elimina bordes redondeados en pantalla completa */
+            background-color: black !important; /* Fondo negro para evitar distracciones */
+        }
     </style>
     </head>
 
@@ -101,10 +118,16 @@
                 <h1 class="titulo-noticia"><?= htmlspecialchars($noticia['titulo']); ?></h1>
 
                 <div class="imagen-noticia">
-                    <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>"
-                        alt="<?= htmlspecialchars($noticia['titulo']); ?>"
-                        loading="lazy"
-                        onerror="this.onerror=null; this.src='./Assets/Images/default-thumbnail.jpg';">
+                    <?php if (pathinfo($noticia['imagen'], PATHINFO_EXTENSION) === 'mp4'): ?>
+                        <video controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
+                            <source src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>" type="video/mp4">
+                            Tu navegador no soporta la reproducción de videos.
+                        </video>
+                    <?php else: ?>
+                        <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticia['imagen']); ?>"
+                             alt="<?= htmlspecialchars($noticia['titulo']); ?>"
+                             loading="lazy">
+                    <?php endif; ?>
                 </div>
 
                 <p class="fecha">Publicado el: <?= htmlspecialchars($noticia['fecha_publicacion']); ?></p>
