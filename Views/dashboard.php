@@ -20,7 +20,7 @@
 
             <div class="imagen-noticia-destacada">
                 <?php if (pathinfo($noticiaDestacada['imagen'], PATHINFO_EXTENSION) === 'mp4'): ?>
-                    <video controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
+                    <video autoplay muted loop controls width="100%" height="auto" style="border-radius: 8px; object-fit: cover;">
                         <source src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>" type="video/mp4">
                         Tu navegador no soporta la reproducción de videos.
                     </video>

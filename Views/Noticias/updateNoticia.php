@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label for="titulo">Título</label>
-                <input type="text" name="titulo" id="titulo" value="<?= htmlspecialchars($noticia['titulo']); ?>" required>
+                <input type="text" name="titulo" id="titulo" value="<?= htmlspecialchars($noticia['titulo']); ?>" maxlength="100" required>
             </div>
             <div class="form-group">
                 <label for="cuerpo">Cuerpo</label>

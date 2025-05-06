@@ -6,11 +6,11 @@
         <form action="index.php?action=createNoticia" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" id="imagen" accept="image/*" required>
+                <input type="file" name="imagen" id="imagen" accept="image/*, video/*" required>
             </div>
             <div class="form-group">
                 <label for="titulo">Título</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el título de la noticia" required>
+                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el título de la noticia" maxlength="100" required>
             </div>
             <div class="form-group">
                 <label for="cuerpo">Cuerpo</label>
