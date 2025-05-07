@@ -162,6 +162,14 @@ body {
   color: #ffffff;
 }
 
+/* Modificación para iniciar-sesion */
+.nav-item.iniciar-sesion.active::before {
+  top: -10px; /* Ajustar el tamaño superior */
+  bottom: 4px; /* Ajustar el tamaño inferior */
+  left: -15px; /* Ajustar el tamaño izquierdo */
+  right: -15px; /* Ajustar el tamaño derecho */
+}
+
 /* Secciones especiales: contacto, iniciar sesión */
 .nav-item.contacto {
   gap: 0.1cm;
