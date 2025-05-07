@@ -28,6 +28,7 @@ switch ($action) {
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $id = $_GET['id'];
             $noticia = $noticiaController->getNoticiaById($id);
+            require_once './Helpers/helper.php';
             include './Views/Includes/navbar.php';
             include './Views/Noticias/showNoticia.php';
         } else {
