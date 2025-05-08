@@ -28,4 +28,20 @@
     </div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Obtener el parámetro "popup" de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const popup = urlParams.get('popup');
+
+    // Mostrar el popup según el caso
+    if (popup) {
+        switch (popup) {
+            case 'login_error':
+                Swal.fire('Error', 'Credenciales incorrectas.', 'error');
+                break;
+            // Puedes agregar más casos aquí si es necesario
+        }
+    }
+</script>
 </html>

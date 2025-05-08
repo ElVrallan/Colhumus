@@ -5,7 +5,7 @@
     <div class="container">
         <div class="login-box">
             <h2>Registrarse</h2>
-            <form method="POST" action="?action=registrarse">
+            <form method="POST" action="?action=registrar">
                 <div class="input-group">
                     <label>Nombre de usuario:</label>
                     <input type="text" name="nombre_usuario" required>

@@ -7,6 +7,7 @@
     <title>Dashboard de Noticias</title>
     <link rel="stylesheet" href="./Assets/Css/dashboardStyle.css">
     <script src="./Assets/Js/noticiaActions.js" defer></script>
+
 </head>
 
 <body>
@@ -224,5 +225,4 @@
     </form>
 
 </body>
-
 </html>

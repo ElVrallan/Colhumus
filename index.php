@@ -95,14 +95,17 @@ switch ($action) {
         break;
     case 'registrarse':
         include './Views/Includes/navbar.php';
+        include './Views/usuarios/registrarse.php';
+        break;
+    case 'registrar':
         $usuarioController->registrarse();
         break;
     case 'olvideContraseña':
-        include './Views/Includes/navbar.php';
+        // include './Views/Includes/navbar.php';
         $usuarioController->olvideContraseña();
         break;
     case 'reestablecerContraseña':
-        include './Views/Includes/navbar.php';
+        // include './Views/Includes/navbar.php';
         $usuarioController->reestablecerContraseña();
         break;
     case 'logout':

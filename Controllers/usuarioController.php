@@ -2,6 +2,7 @@
 
 require_once './Models/usuarioModel.php';
 require_once './Config/database.php';
+require_once './Helpers/enviarCorreo.php'; // Asegúrate de que esta ruta sea correcta
 
 session_start();
 
@@ -27,7 +28,7 @@ class UsuarioController {
                 exit(); // DETIENE la ejecución aquí
             } else {
                 // Redirigir con un mensaje de error en la URL (puedes leerlo luego en la vista)
-                header("Location: index.php?action=iniciarSesion&error=1");
+                header("Location: index.php?action=iniciarSesion&popup=login_error");
                 exit();
             }
         } else {
@@ -48,7 +49,8 @@ class UsuarioController {
                 echo "Ya existe un usuario con ese correo.";
             } else {
                 $this->usuarioModel->registrar($nombre, $correo, $contraseña);
-                echo "Registro exitoso.";
+                header("Location: index.php?action=dashboard");
+                exit();
             }
         } else {
             require __DIR__ . '/../views/usuarios/registrarse.php';
@@ -56,28 +58,34 @@ class UsuarioController {
     }
 
     // Acción para recuperar contraseña (olvidé la contraseña)
-    public function olvideContraseña() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $correo = $_POST['correo'];
-            $usuario = $this->usuarioModel->obtenerPorCorreo($correo);
 
-            if ($usuario) {
-                $token = bin2hex(random_bytes(50));
-                $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
-                $this->usuarioModel->actualizarToken($correo, $token, $expira);
-                
-                // Aquí puedes enviar el link por correo
-                $link = "http://localhost/index.php?action=reestablecerContraseña&token=$token";
-                mail($correo, "Recupera tu contraseña", "Visita este enlace: $link");
 
+public function olvideContraseña() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $correo = $_POST['correo'];
+        $usuario = $this->usuarioModel->obtenerPorCorreo($correo);
+
+        if ($usuario) {
+            $token = bin2hex(random_bytes(50));
+            $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
+            $this->usuarioModel->actualizarToken($correo, $token, $expira);
+            
+            $link = "http://localhost/index.php?action=reestablecerContraseña&token=$token";
+
+            if (enviarCorreoRecuperacion($correo, $link)) {
                 echo "Si el correo existe, se envió un enlace.";
             } else {
-                echo "Correo no encontrado.";
+                echo "Hubo un problema al enviar el correo. Intenta más tarde.";
             }
         } else {
-            require __DIR__ . '/../views/usuarios/olvideContraseña.php';
+            // Por seguridad, no revelar si el correo existe o no
+            echo "Si el correo existe, se envió un enlace.";
         }
+    } else {
+        require __DIR__ . '/../views/usuarios/olvideContraseña.php';
     }
+}
+
 
     // Acción para reestablecer la contraseña
     public function reestablecerContraseña() {
