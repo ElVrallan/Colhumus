@@ -17,7 +17,7 @@
             </form>
 
             <p class="registrarse">
-                <a href="?action=login">Volver al inicio de sesión</a>
+                <a href="?action=iniciarSesion">Volver al inicio de sesión</a>
             </p>
         </div>
     </div>

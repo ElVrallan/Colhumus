@@ -25,7 +25,7 @@
             </form>
 
             <p class="registrarse">
-                <a href="?action=login">¿Ya tienes cuenta? Inicia sesión</a>
+                <a href="?action=iniciarSesion">¿Ya tienes cuenta? Inicia sesión</a>
             </p>
         </div>
     </div>
