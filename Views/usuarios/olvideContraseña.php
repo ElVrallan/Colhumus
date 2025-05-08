@@ -1,9 +1,23 @@
-<h2>Recuperar contraseña</h2>
-<form method="POST" action="?action=olvideContraseña">
-    <label>Correo:</label>
-    <input type="email" name="correo" required><br>
+<link rel="stylesheet" href=".\Assets\Css\login.css">
+</head>
 
-    <button type="submit">Enviar enlace</button>
-</form>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Recuperar contraseña</h2>
+            <form method="POST" action="?action=olvideContraseña">
+                <div class="input-group">
+                    <label>Correo:</label>
+                    <input type="email" name="correo" required>
+                </div>
 
-<p><a href="?action=login">Volver al inicio de sesión</a></p>
+                <button type="submit" class="btn-submit">Enviar enlace</button>
+            </form>
+
+            <p class="registrarse">
+                <a href="?action=login">Volver al inicio de sesión</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -58,7 +58,9 @@ $currentAction = $action ?? 'dashboard';
                     </svg>
                 </div>
 
-                <a class="nav-item contacto <?= $currentAction === 'contacto' ? 'active' : '' ?>" href="https://web.whatsapp.com/send/?phone=573155829805&text&type=phone_number&app_absent=0" target="_blank">
+                <a class="nav-item contacto <?= $currentAction === 'contacto' ? 'active' : '' ?>"
+                    href="https://web.whatsapp.com/send/?phone=573155829805&text&type=phone_number&app_absent=0"
+                    target="_blank">
                     <span class="icon-contacto">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor"
                             viewBox="0 -2 16 16">
@@ -75,11 +77,25 @@ $currentAction = $action ?? 'dashboard';
                     </svg>
                 </div>
 
+                <?php if (isset($_SESSION['nombre_usuario'])): ?>
+                <div class="nav-item usuario-activo">
+                    <span class="icon-iniciar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-person-fill" viewBox="0 -2 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                    </span>
+                    <span><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></span>
+                </div>
+                <?php else: ?>
                 <div class="nav-item iniciar-sesion <?= $currentAction === 'iniciarSesion' ? 'active' : '' ?>">
                     <span class="icon-iniciar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor" class="bi bi-person-walking" viewBox="0 -2 16 16">
-                            <path d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z" />
-                            <path d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor"
+                            class="bi bi-person-walking" viewBox="0 -2 16 16">
+                            <path
+                                d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z" />
+                            <path
+                                d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z" />
                         </svg>
                     </span>
                     <form action="index.php" method="GET">
@@ -91,6 +107,8 @@ $currentAction = $action ?? 'dashboard';
                         <button type="submit"></button>
                     </form>
                 </div>
+                <?php endif; ?>
+
 
                 <div class="divider">
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
@@ -102,7 +120,8 @@ $currentAction = $action ?? 'dashboard';
                         <input type="hidden" name="action" value="searchNoticias">
                         <input type="text" name="query" class="search-bar" placeholder="Buscar noticias...">
                         <button class="search-button" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                viewBox="0 0 16 16">
                                 <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018" />
                                 <path
                                     d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11" />

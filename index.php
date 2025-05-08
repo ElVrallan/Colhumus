@@ -91,7 +91,6 @@ switch ($action) {
         require './Views/Noticias/resultadosBusqueda.php';
         break;
     case 'login':
-        include './Views/Includes/navbar.php';
         $usuarioController->login();
         break;
     case 'registrarse':
