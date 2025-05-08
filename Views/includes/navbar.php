@@ -78,7 +78,7 @@ $currentAction = $action ?? 'dashboard';
                 </div>
 
                 <?php if (isset($_SESSION['nombre_usuario'])): ?>
-                <div class="nav-item usuario-activo">
+                <div class="nav-item usuario-activo" onclick="toggleLogoutButton()">
                     <span class="icon-iniciar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                             class="bi bi-person-fill" viewBox="0 -2 16 16">
@@ -87,7 +87,7 @@ $currentAction = $action ?? 'dashboard';
                     </span>
                     <span><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></span>
                 </div>
-                <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
+                <button class="logout-button" id="logoutButton" onclick="logout()">Cerrar Sesión</button>
                 <?php else: ?>
                 <div class="nav-item iniciar-sesion <?= $currentAction === 'iniciarSesion' ? 'active' : '' ?>">
                     <span class="icon-iniciar">
@@ -138,6 +138,11 @@ $currentAction = $action ?? 'dashboard';
             if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
                 window.location.href = "index.php?action=logout";
             }
+        }
+
+        function toggleLogoutButton() {
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.style.display = logoutButton.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>

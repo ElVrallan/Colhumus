@@ -239,7 +239,7 @@ body {
 
 /* Estilos para el botón "Cerrar Sesión" */
 .logout-button {
-    display: block;
+    display: none; /* Hidden by default */
     position: absolute;
     top: 60px; /* Move the button far below the navbar */
     left: 905px;
@@ -247,6 +247,7 @@ body {
     padding: 10px 20px;
     background-color: red;
     color: white;
+    box-shadow: black 0px 0px 10px 0px;
     font-family: var(--font-secondary);
     font-size: 18pt;  
     font-weight: bold;
