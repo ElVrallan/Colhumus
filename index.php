@@ -105,6 +105,11 @@ switch ($action) {
         include './Views/Includes/navbar.php';
         $usuarioController->reestablecerContraseña();
         break;
+    case 'logout':
+        session_destroy();
+        header("Location: index.php?action=dashboard");
+        exit();
+        break;
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
         $listaNoticias = $dashboardController->getListaNoticias();

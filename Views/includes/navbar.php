@@ -87,6 +87,7 @@ $currentAction = $action ?? 'dashboard';
                     </span>
                     <span><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></span>
                 </div>
+                <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
                 <?php else: ?>
                 <div class="nav-item iniciar-sesion <?= $currentAction === 'iniciarSesion' ? 'active' : '' ?>">
                     <span class="icon-iniciar">
@@ -132,6 +133,13 @@ $currentAction = $action ?? 'dashboard';
             </div>
         </div>
     </nav>
+    <script>
+        function logout() {
+            if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
+                window.location.href = "index.php?action=logout";
+            }
+        }
+    </script>
 </body>
 
 </html>
