@@ -2,9 +2,11 @@
 
 require_once './Controllers/dashboardController.php';
 require_once './Controllers/noticiaController.php';
+require_once './Controllers/usuarioController.php';
 
 $dashboardController = new DashboardController();
 $noticiaController = new NoticiaController();
+$usuarioController = new UsuarioController();
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -87,6 +89,22 @@ switch ($action) {
         require_once './Helpers/helper.php';
         include './Views/Includes/navbar.php';
         require './Views/Noticias/resultadosBusqueda.php';
+        break;
+    case 'login':
+        include './Views/Includes/navbar.php';
+        $usuarioController->login();
+        break;
+    case 'registrarse':
+        include './Views/Includes/navbar.php';
+        $usuarioController->registrarse();
+        break;
+    case 'olvideContraseña':
+        include './Views/Includes/navbar.php';
+        $usuarioController->olvideContraseña();
+        break;
+    case 'reestablecerContraseña':
+        include './Views/Includes/navbar.php';
+        $usuarioController->reestablecerContraseña();
         break;
     default:
         $noticiaDestacada = $dashboardController->getNoticiaDestacada();
