@@ -133,6 +133,7 @@ $currentAction = $action ?? 'dashboard';
             </div>
         </div>
     </nav>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     // Obtener el parámetro "popup" de la URL
@@ -166,6 +167,18 @@ $currentAction = $action ?? 'dashboard';
                     confirmButtonText: 'Aceptar'
                 });
                 break;
+
+            case 'login_error':
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Credenciales incorrectas.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            default:
+                console.warn('Popup desconocido:', popup);
         }
     }
 

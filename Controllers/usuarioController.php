@@ -24,7 +24,7 @@ class UsuarioController {
             if ($usuario && password_verify($contraseña, $usuario['contraseña']) && !$usuario['bloqueado']) {
                 $_SESSION['user_id'] = $usuario['id'];
                 $_SESSION['nombre_usuario'] = $usuario['nombre_usuario']; // para mostrar en el navbar
-                header("Location: index.php?action=dashboard");
+                header("Location: index.php?action=dashboard&popup=login_success");
                 exit(); // DETIENE la ejecución aquí
             } else {
                 // Redirigir con un mensaje de error en la URL (puedes leerlo luego en la vista)
