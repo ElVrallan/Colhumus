@@ -102,6 +102,7 @@ public function olvideContraseña() {
                 header("Location: index.php?action=olvideContraseña&popup=errorToken");
             }
         } else {
+            include './Views/Includes/navbar.php';
             require __DIR__ . '/../views/usuarios/reestablecerContraseña.php';
         }
     }
