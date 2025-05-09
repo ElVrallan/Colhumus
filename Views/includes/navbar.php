@@ -177,6 +177,42 @@ $currentAction = $action ?? 'dashboard';
                 });
                 break;
 
+            case 'correoEnviado':
+                Swal.fire({
+                    title: 'Correo enviado',
+                    text: '¡Si la direccion de correo existe, se ha enviado un correo!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'correoNoEnviado':
+                Swal.fire({
+                    title: 'El correo no se ha podido enviar',
+                    text: '¡Revisa tu conección a internet!',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'contraseñaActualizada':
+                Swal.fire({
+                    title: 'Contraseña actualizada',
+                    text: '¡Intenta ingresar con tu nueva contraseña!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'errorToken':
+                Swal.fire({
+                    title: 'Error',
+                    text: '¡Codigo invalido o expirado!',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
             default:
                 console.warn('Popup desconocido:', popup);
         }

@@ -70,16 +70,16 @@ public function olvideContraseña() {
             $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
             $this->usuarioModel->actualizarToken($correo, $token, $expira);
             
-            $link = "http://localhost/index.php?action=reestablecerContraseña&token=$token";
+            $link = "http://localhost/proyectos/colhumus/index.php?action=reestablecerContraseña&token=$token";
 
             if (enviarCorreoRecuperacion($correo, $link)) {
-                echo "Si el correo existe, se envió un enlace.";
+                header("Location: index.php?action=olvideContraseña&popup=correoEnviado");
             } else {
-                echo "Hubo un problema al enviar el correo. Intenta más tarde.";
+                header("Location: index.php?action=olvideContraseña&popup=correoNoEnviado");
             }
         } else {
             // Por seguridad, no revelar si el correo existe o no
-            echo "Si el correo existe, se envió un enlace.";
+                header("Location: index.php?action=olvideContraseña&popup=correoEnviado");
         }
     } else {
         require __DIR__ . '/../views/usuarios/olvideContraseña.php';
@@ -97,9 +97,9 @@ public function olvideContraseña() {
             if ($usuario) {
                 $nuevaContraHash = password_hash($nuevaContraseña, PASSWORD_BCRYPT);
                 $this->usuarioModel->actualizarContraseña($usuario['id'], $nuevaContraHash);
-                echo "Contraseña actualizada correctamente.";
+                header("Location: index.php?action=iniciarSesion&popup=contraseñaActualizada");
             } else {
-                echo "Token inválido o expirado.";
+                header("Location: index.php?action=olvideContraseña&popup=errorToken");
             }
         } else {
             require __DIR__ . '/../views/usuarios/reestablecerContraseña.php';

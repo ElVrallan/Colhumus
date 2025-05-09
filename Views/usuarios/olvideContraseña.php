@@ -5,7 +5,7 @@
     <div class="container">
         <div class="login-box">
             <h2>Recuperar contraseña</h2>
-            <form method="POST" action="?action=olvideContraseña">
+            <form method="POST" action="?action=enviarEmail">
                 <div class="input-group">
                     <label>Correo:</label>
                     <input type="email" name="correo" required>

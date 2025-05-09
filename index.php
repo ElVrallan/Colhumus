@@ -101,11 +101,13 @@ switch ($action) {
         $usuarioController->registrarse();
         break;
     case 'olvideContraseña':
-        // include './Views/Includes/navbar.php';
+        include './Views/Includes/navbar.php';
+        include './Views/usuarios/olvideContraseña.php';
+        break;
+    case 'enviarEmail':
         $usuarioController->olvideContraseña();
         break;
     case 'reestablecerContraseña':
-        // include './Views/Includes/navbar.php';
         $usuarioController->reestablecerContraseña();
         break;
     case 'logout':
