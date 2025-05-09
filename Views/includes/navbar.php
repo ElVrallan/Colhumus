@@ -133,11 +133,27 @@ $currentAction = $action ?? 'dashboard';
             </div>
         </div>
     </nav>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // Obtener el parámetro "popup" de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const popup = urlParams.get('popup');
+
         function logout() {
-            if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
-                window.location.href = "index.php?action=logout";
-            }
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas cerrar sesión?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, cerrar sesión',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "index.php?action=logout";
+                }
+            });
         }
 
         function toggleLogoutButton() {
