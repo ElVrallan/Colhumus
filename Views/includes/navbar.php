@@ -135,31 +135,44 @@ $currentAction = $action ?? 'dashboard';
     </nav>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Obtener el parámetro "popup" de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const popup = urlParams.get('popup');
+    // Obtener el parámetro "popup" de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const popup = urlParams.get('popup');
 
-        function logout() {
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¿Deseas cerrar sesión?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, cerrar sesión',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "index.php?action=logout";
-                }
-            });
-        }
+    function logout() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cerrar sesión?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "index.php?action=logout";
+            }
+        });
+    }
 
-        function toggleLogoutButton() {
-            const logoutButton = document.getElementById('logoutButton');
-            logoutButton.style.display = logoutButton.style.display === 'block' ? 'none' : 'block';
+    if (popup) {
+        switch (popup) {
+            case 'registroExitoso':
+                Swal.fire({
+                    title: 'Registro exitoso',
+                    text: '¡Puedes iniciar sesión!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
         }
+    }
+
+    function toggleLogoutButton() {
+        const logoutButton = document.getElementById('logoutButton');
+        logoutButton.style.display = logoutButton.style.display === 'block' ? 'none' : 'block';
+    }
     </script>
 </body>
 

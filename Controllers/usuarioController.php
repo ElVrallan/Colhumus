@@ -49,7 +49,7 @@ class UsuarioController {
                 echo "Ya existe un usuario con ese correo.";
             } else {
                 $this->usuarioModel->registrar($nombre, $correo, $contraseña);
-                header("Location: index.php?action=dashboard");
+                header("Location: index.php?action=dashboard&popup=registroExitoso");
                 exit();
             }
         } else {
