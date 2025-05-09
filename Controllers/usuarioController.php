@@ -46,7 +46,7 @@ class UsuarioController {
             $contraseña = $_POST['contraseña'];
 
             if ($this->usuarioModel->obtenerPorCorreo($correo)) {
-                echo "Ya existe un usuario con ese correo.";
+                header("Location: index.php?action=iniciarSesion&popup=correoDuplicado");
             } else {
                 $this->usuarioModel->registrar($nombre, $correo, $contraseña);
                 header("Location: index.php?action=iniciarSesion&popup=registroExitoso");

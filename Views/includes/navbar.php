@@ -168,6 +168,15 @@ $currentAction = $action ?? 'dashboard';
                 });
                 break;
 
+            case 'correoDuplicado':
+                Swal.fire({
+                    title: 'El correo ya existe',
+                    text: '¡La dirección de correo ingresada ya existe!',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
             case 'login_error':
                 Swal.fire({
                     title: 'Error',
