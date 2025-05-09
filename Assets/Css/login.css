@@ -69,3 +69,7 @@ body {
     margin-top: 20px;
     color: gray;
 }
+
+#togglePassword img {
+    display: block;
+}
