@@ -10,8 +10,6 @@
 
 </head>
 
-<body>
-
     <!-- NOTICIA DESTACADA -->
     <div class="noticia-destacada">
         <form action="index.php" method="GET">
