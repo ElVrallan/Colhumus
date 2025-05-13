@@ -63,13 +63,29 @@ function shareNoticia(id) {
           if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
             if (response.success) {
-              const shareCountElement = document.getElementById(
+              // Actualizar el conteo de compartidas en la noticia destacada
+              const shareCountElementDestacada = document.getElementById(
                 `share-count-${id}`
               );
-              const shareText = shareCountElement.querySelector(".share-text");
-              if (shareText) {
-                shareText.textContent = response.shares;
+              if (shareCountElementDestacada) {
+                const shareTextDestacada = shareCountElementDestacada.querySelector(".share-text");
+                if (shareTextDestacada) {
+                  shareTextDestacada.textContent = response.shares;
+                }
               }
+
+              // Actualizar el conteo de compartidas en la lista de noticias
+              const regularShareCountElements = document.querySelectorAll(
+                `#share-count-${id}`
+              );
+              regularShareCountElements.forEach((element) => {
+                if (element !== shareCountElementDestacada) {
+                  const shareTextElement = element.querySelector(".share-text");
+                  if (shareTextElement) {
+                    shareTextElement.textContent = response.shares;
+                  }
+                }
+              });
             } else {
               console.error("Error al actualizar el conteo de compartidas.");
             }
