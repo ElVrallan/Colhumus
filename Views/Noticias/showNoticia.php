@@ -118,16 +118,16 @@
         </form>
 
 
-        <form action="index.php" method="GET">
+        <form action="index.php" method="GET" id="deleteNoticiaForm">
             <input type="hidden" name="action" value="deleteNoticia">
             <input type="hidden" name="id" value="<?= htmlspecialchars($noticia['id']); ?>">
-            <button type="submit" class="floating-button delete">
+            <button type="button" class="floating-button delete" onclick="confirmDeleteNoticia()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                     viewBox="0 0 16 16">
                     <path
                         d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                     <path
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1z" />
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 1 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1z" />
                 </svg>
             </button>
         </form>
@@ -160,6 +160,23 @@ function detenerLectura() {
 window.addEventListener("beforeunload", function() {
     window.speechSynthesis.cancel();
 });
+
+function confirmDeleteNoticia() {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¿Deseas eliminar esta noticia?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('deleteNoticiaForm').submit();
+        }
+    });
+}
 </script>
 
 </html>
