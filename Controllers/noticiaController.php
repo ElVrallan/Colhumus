@@ -105,6 +105,19 @@ class NoticiaController {
 
     public function deleteNoticia(){
         $id = $_GET['id'] ?? '';
+        
+        // Obtener la noticia para acceder a la imagen
+        $noticia = $this->noticiaModel->getNoticiaById($id);
+        if ($noticia && isset($noticia['imagen'])) {
+            $rutaImagen = "./Assets/Images/Noticias/Thumbnail/" . $noticia['imagen'];
+            
+            // Verificar si el archivo existe y eliminarlo
+            if (file_exists($rutaImagen)) {
+                unlink($rutaImagen);
+            }
+        }
+        
+        // Eliminar la noticia de la base de datos
         $this->noticiaModel->deleteNoticia($id);
         header("Location: index.php?action=dashboard");
         exit();
