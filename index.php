@@ -38,35 +38,47 @@ switch ($action) {
         }
         break;
     case 'createNoticia':
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $noticiaController->createNoticia();
+        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $noticiaController->createNoticia();
+            } else {
+                include './Views/Includes/navbar.php';
+                include './Views/Noticias/createNoticia.php';
+            }
         } else {
-            include './Views/Includes/navbar.php';
-            include './Views/Noticias/createNoticia.php';
+            echo "Error: No tienes permisos para realizar esta acción.";
         }
         break;
     case 'updateNoticia':
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $noticiaController->updateNoticia();
-            include './Views/Includes/navbar.php';
-            include './Views/dashboard.php';
-        } else {
-            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-                $id = $_GET['id'];
-                $noticia = $noticiaController->getNoticiaById($id);
+        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $noticiaController->updateNoticia();
                 include './Views/Includes/navbar.php';
-                include './Views/Noticias/updateNoticia.php';
+                include './Views/dashboard.php';
             } else {
-                echo "Error: ID de noticia no válido.";
+                if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $noticia = $noticiaController->getNoticiaById($id);
+                    include './Views/Includes/navbar.php';
+                    include './Views/Noticias/updateNoticia.php';
+                } else {
+                    echo "Error: ID de noticia no válido.";
+                }
             }
+        } else {
+            echo "Error: No tienes permisos para realizar esta acción.";
         }
         break;
     case 'deleteNoticia':
-        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-            $id = $_GET['id'];
-            $noticia = $noticiaController->deleteNoticia($id);
+        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1) {
+            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $id = $_GET['id'];
+                $noticia = $noticiaController->deleteNoticia($id);
+            } else {
+                echo "Error: ID de noticia no válido.";
+            }
         } else {
-            echo "Error: ID de noticia no válido.";
+            echo "Error: No tienes permisos para realizar esta acción.";
         }
         break;
     case 'contLikes':
