@@ -87,6 +87,11 @@ class NoticiaController {
     
                 // Mover la imagen al directorio de destino
                 if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $rutaCompleta)) {
+                    // Eliminar la imagen anterior si existe
+                    $rutaImagenAnterior = $directorioDestino . $imagen;
+                    if (file_exists($rutaImagenAnterior)) {
+                        unlink($rutaImagenAnterior);
+                    }
                     $imagen = $nombreImagen; // Actualizar la imagen solo si se subió correctamente
                 } else {
                     echo "Error al subir la imagen.";
