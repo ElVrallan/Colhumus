@@ -29,7 +29,7 @@
                     <img src="./Assets/Images/Noticias/Thumbnail/<?= htmlspecialchars($noticiaDestacada['imagen']); ?>">
                 <?php endif; ?>
             </div>
-            <div class="titulo-noticia"><?= htmlspecialchars($noticiaDestacada['titulo']); ?></div>
+            <div class="titulo-noticia-destacada"><?= htmlspecialchars($noticiaDestacada['titulo']); ?></div>
             <div class="cuerpo-noticia-destacada"><?= htmlspecialchars($noticiaDestacada['cuerpo']); ?></div>
             <p class="verMas">Ver más...</p>
             <div class="estadisticas-fecha-destacada">

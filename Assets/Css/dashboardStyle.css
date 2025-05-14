@@ -104,9 +104,10 @@ body {
 }
 
 .verMas {
-  margin-top: 5px;
+  margin-top: auto;
   font-weight: bold;
   cursor: pointer;
+  text-align: center;
 }
 
 .estadisticas-fecha-destacada {
@@ -130,6 +131,15 @@ body {
   cursor: pointer;
 }
 
+.titulo-noticia-destacada {
+  font-family: var(--fuente-titulo);
+  font-size: 15pt;
+  font-weight: 700;
+  line-height: 1.1;
+  padding: 2.5px 0;
+  text-align: center;
+}
+
 /* ============================
    CONTENEDOR DE NOTICIAS
 ============================ */
@@ -149,6 +159,10 @@ body {
   padding: 10px;
   margin: 0 20px;
   overflow: hidden;
+  display: flex;
+  flex-direction: row; /* Arrange content in a row */
+  align-items: stretch; /* Ensure all items align properly */
+  box-sizing: border-box;
 }
 
 /* ============================
@@ -158,6 +172,7 @@ body {
   width: 300px;
   float: left;
   box-sizing: border-box;
+  flex-shrink: 0; /* Prevent the image from shrinking */
 }
 
 .imagen-noticia img,
@@ -194,11 +209,14 @@ video:-webkit-full-screen {
 
 .titulo-noticia {
   font-family: var(--fuente-titulo);
-  font-size: 18pt;
+  font-size: 15pt;
   font-weight: 700;
   line-height: 1.1;
   padding: 2.5px 0;
-  margin-bottom: 5px;
+  min-height: 2.2em; /* Reserve space for two lines of text */
+  display: flex;
+  align-items: center; /* Center text vertically if only one line */
+  justify-content: center;
   text-align: center;
 }
 
@@ -206,10 +224,24 @@ video:-webkit-full-screen {
   text-align: center;
   display: block;
   width: 100%;
+  margin-top: auto; /* Push it to the bottom of the content */
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-end; /* Align it to the right if needed */
+}
+
+.contenido-noticia {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1; /* Allow content to fill the remaining space */
+  padding-left: 10px; /* Add spacing between image and content */
+  box-sizing: border-box;
 }
 
 .cuerpo-noticia {
   position: relative;
+  top: 3px;
   font-family: var(--fuente-cuerpo);
   font-size: 13pt;
   line-height: 1.1;
@@ -218,6 +250,8 @@ video:-webkit-full-screen {
   text-align: justify;
   height: 155px;
   overflow: hidden;
+  flex-grow: 1; /* Ensure it takes available vertical space */
+  overflow-y: hidden;
 }
 
 /* Línea decorativa en el cuerpo */
@@ -240,13 +274,20 @@ video:-webkit-full-screen {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -10px;
+  margin-top: 10px;
+}
+
+.stats-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
 }
 
 .accion-buttons {
   display: flex;
   gap: 5px;
-  margin-top: 13px;
+  margin-top: 10px;
   z-index: 3;
 }
 
@@ -312,4 +353,32 @@ video:-webkit-full-screen {
 ============================ */
 .clear {
   clear: both;
+}
+
+/* ============================
+   AJUSTES PARA RESOLUCIONES MÁS PEQUEÑAS
+============================ */
+@media (max-width: 1366px) {
+  .titulo-noticia-destacada{
+    font-size: 14pt;
+  }
+
+  .titulo-noticia {
+    font-size: 14pt; /* Slightly smaller font size for regular news */
+  }
+
+  .fecha-botones, 
+  .stats-actions, 
+  .accion-buttons {
+    font-size: 11pt; /* Adjust font size for buttons and stats */
+  }
+
+  .accion-button {
+    font-size: 12pt; /* Adjust button text size */
+    padding: 5px 9px; /* Slightly reduce padding for buttons */
+  }
+
+  .estadisticas {
+    font-size: 11pt; /* Adjust stats font size */
+  }
 }
