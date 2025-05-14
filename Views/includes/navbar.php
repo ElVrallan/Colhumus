@@ -10,11 +10,59 @@ $currentAction = $action ?? 'dashboard';
     <link rel="icon" type="image/x-icon" href="./Assets/Images/Colhumus%20icono.ico">
     <link rel="stylesheet" href="./Assets/Css/navbarStyle.css">
     <link rel="stylesheet" href="./Assets/Css/scrollbarStyle.css">
+
+    <style>
+/* Responsive navbar: ocultar ítems y mostrar botón hamburguesa en pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-items {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-items.show {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-size: 28px;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .nav-logo img {
+        max-width: 150px;
+    }
+
+    .divider {
+        display: none;
+    }
+}
+
+/* Por defecto, ocultamos el botón hamburguesa en pantallas grandes */
+.hamburger {
+    display: none;
+}
+</style>
 </head>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
     <nav class="navbar">
         <div class="navbar-content">
+
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+
             <form action="index.php" method="GET">
                 <input type="hidden" name="action" value="dashboard">
                 <div class="nav-logo">
@@ -231,7 +279,109 @@ $currentAction = $action ?? 'dashboard';
         const logoutButton = document.getElementById('logoutButton');
         logoutButton.style.display = logoutButton.style.display === 'block' ? 'none' : 'block';
     }
+    function toggleMenu() {
+    const navItems = document.querySelector('.nav-items');
+    navItems.classList.toggle('show');
+}
+
     </script>
+    
 </body>
+<style>
+/* Responsive navbar: ocultar ítems y mostrar botón hamburguesa en pantallas pequeñas */
+
+@media (max-width: 768px) {
+  .navbar-content {
+  width: 100%; /* que ocupe todo el ancho de navbar */
+  display: flex;
+  justify-content: space-between; /* o center, según tu diseño */
+  padding: 0 16px; /* opcional, puedes ajustar */
+  box-sizing: border-box;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* si es necesario centrar elementos */
+  align-items: center;
+  padding: 0; /* importante */
+  margin: 0;
+  
+}
+
+
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    background-color: #4CAF50;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  .nav-items.show {
+    display: flex;
+  }
+
+  .nav-item, .nav-form, .contacto, .iniciar-sesion {
+    padding: 12px 20px;
+    border-bottom: 1px solid white;
+    width: 100%;
+  }
+
+  .nav-item span, .contacto span, .iniciar-sesion span {
+    color: white;
+    font-size: 18px;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .search-section {
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .search-bar {
+    width: 100%;
+    padding: 8px;
+  }
+}
+
+
+.hamburger {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:#5ab507;
+}
+
+</style>
+
 
 </html>
