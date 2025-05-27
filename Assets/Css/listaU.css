@@ -1,0 +1,113 @@
+/* Estilos para el listado de usuarios (acorde a showNoticia.css y dashboard) */
+
+body {
+  background-color: #a9e159;
+  font-family: "Roboto", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #468704;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+table {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  margin: 0 auto 30px auto;
+  width: 90%;
+  max-width: 900px;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #468704;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+tr:nth-child(odd) {
+  background-color: #eaf6d5;
+}
+
+td {
+  font-size: 1rem;
+  color: #333;
+}
+
+.accion-button {
+  background-color: #468704;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.accion-button:hover {
+  background-color: #218838;
+}
+
+a.accion-button {
+  text-decoration: none;
+  display: inline-block;
+}
+
+span[style*="color:red"] {
+  font-weight: bold;
+}
+
+span[style*="color:green"] {
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  th, td {
+    padding: 10px 5px;
+    text-align: left;
+  }
+  th {
+    background: #468704;
+    color: #fff;
+    border-radius: 0;
+  }
+  tr {
+    margin-bottom: 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  }
+}
+
+.volver-inicio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+}
+.accion-button.volver-inicio {
+    background: #468704 !important;
+    color: #fff !important;
+}
+.accion-button.volver-inicio:hover {
+    background: #218838 !important;
+}

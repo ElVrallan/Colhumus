@@ -5,6 +5,14 @@
     <div class="container">
         <div class="login-box">
             <h2>Iniciar sesión</h2>
+            <?php if (!empty($error)): ?>
+                <div style="color: red; margin-bottom: 10px;"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
+            <?php if (!empty($bloqueado) || (isset($_GET['bloqueado']) && $_GET['bloqueado'] == 1)): ?>
+                <div style="color: orange; margin-bottom: 10px;">
+                    Tu usuario está bloqueado. Puedes navegar, pero no podrás comentar.
+                </div>
+            <?php endif; ?>
             <form method="POST" action="?action=login">
                 <div class="input-group">
                     <label>Correo:</label>

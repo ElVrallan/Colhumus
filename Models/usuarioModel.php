@@ -40,5 +40,12 @@ class UsuarioModel {
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$nuevaContraHash, $id]);
     }
+
+    public function obtenerTodos() {
+        $sql = "SELECT id, nombre_usuario, correo, bloqueado FROM {$this->usuarios}";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

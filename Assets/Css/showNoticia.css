@@ -153,3 +153,189 @@ body {
 .floating-button.delete {
   background-color: #d9534f;
 }
+
+
+.acciones {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+
+/* Botones dentro de acciones (opcional para que se vean uniformes) */
+.acciones button {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #2c7be5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.acciones button:hover {
+  background-color: #1a5fc1;
+}
+
+/* Línea separadora */
+.separator {
+  border-top: 2px solid #ccc;
+  margin-bottom: 40px;
+}
+
+/* Contenedor para comentarios */
+.comentarios-container {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+}
+
+/* Cada comentario */
+.comentario {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* Cambiado de row-reverse a column */
+  align-items: flex-start; /* Alinea todo a la izquierda */
+  min-width: 0;
+  gap: 0; /* Sin separación horizontal */
+  position: relative;
+}
+
+.comentario > div {
+  width: 100%; /* Ambos divs ocupan todo el ancho */
+  min-width: 0;
+  display: block;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+/* Usuario y fecha */
+.comentario strong {
+  color: #2c7be5;
+}
+
+.comentario small {
+  color: gray;
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Texto del comentario */
+.comentario p {
+  margin: 6px 0 0 0;
+  line-height: 1.4;
+  color: #333;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: pre-wrap;
+  min-width: 0;
+  width: 100%;
+  display: block;
+}
+
+/* Modal y oculto mantengo igual si quieres */
+.oculto {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* Estilos para el botón de "Comentar" */
+.accion-button {
+  background-color: #468704;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.accion-button svg {
+  margin-left: 8px;
+}
+
+.accion-button:hover {
+  background-color: #218838;
+}
+
+/* Estilo para ocultar el formulario de comentarios inicialmente */
+.oculto {
+  display: none;
+}
+
+/* Estilo responsivo */
+@media (max-width: 600px) {
+  .comentarios {
+      padding: 15px;
+  }
+
+  .comentarios h3 {
+      font-size: 1.3rem;
+  }
+
+  .comentarios textarea {
+      font-size: 0.9rem;
+  }
+
+  .comentarios button {
+      font-size: 0.9rem;
+  }
+
+  .accion-button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+  }
+}
+
+.comentario form[method="POST"][action*="deleteComentario"] {
+  margin-top: 12px;
+  display: inline-block;
+  position: static;
+}
