@@ -1,0 +1,155 @@
+/* General Styles */
+body {
+  background-color: #a9e159;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Article Styles */
+.noticia {
+  max-width: 800px;
+  margin: 2cm auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-noticia {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.fecha {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.cuerpo-noticia {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #333;
+  text-align: left;
+  max-width: 80ch;
+  margin: 0 auto;
+}
+
+/* Media Styles */
+.imagen-noticia img,
+.imagen-noticia video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.imagen-noticia video:fullscreen,
+.imagen-noticia video:-webkit-full-screen {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  background-color: black !important;
+}
+
+/* Accessibility */
+.visualmente-oculto {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Audio Controls */
+.texto-audio {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.texto-audio button {
+  border-radius: 5px;
+  font-size: 12pt;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.texto-audio .leer {
+  background-color: #5ab507;
+}
+
+.texto-audio .detener {
+  background-color: #007bff;
+}
+
+/* Statistics Section */
+.estadisticas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  margin: 10px auto 0;
+}
+
+.accion-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.accion-button {  
+  background-color: #468704;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 18pt;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space ;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.accion-button svg {
+  fill: white;
+  margin-left: 5px;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.floating-button {
+  background-color: #468704;
+  border: none;
+  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.floating-button svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.floating-button.delete {
+  background-color: #d9534f;
+}

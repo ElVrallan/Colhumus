@@ -1,0 +1,21 @@
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #468704;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #315E02;
+    border-radius: 0;
+    border: none;
+  }
+  
+  /* Para Firefox */
+  * {
+    scrollbar-color: #315E02 #468704;
+    scrollbar-width: auto;
+  }
+  

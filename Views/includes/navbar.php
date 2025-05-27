@@ -1,0 +1,341 @@
+<?php
+$currentAction = $action ?? 'dashboard';
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Colhumus</title>
+    <link rel="icon" type="image/x-icon" href="./Assets/Images/Colhumus%20icono.ico">
+    <link rel="stylesheet" href="./Assets/Css/navbarStyle.css">
+    <link rel="stylesheet" href="./Assets/Css/scrollbarStyle.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<style>
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    width: 100%;
+  }
+
+  .nav-logo {
+    margin-right: auto;
+    padding-left: 0;
+    width: auto;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo img {
+    margin-right: 0;
+    max-height: 1.1cm;
+    max-width: 90vw;
+    height: auto;
+    width: auto;
+    display: block;
+  }
+
+  .nav-logo button, .nav-item button {
+    display: block;
+    width: 100%;
+    text-align: left !important;
+    padding: 10px 20px;
+    background-color: #5ab507;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    border-bottom: 1px solid white;
+  }
+
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    background-color: #5ab507;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  .nav-items.show {
+    display: flex;
+  }
+
+  .nav-item, .nav-form, .contacto, .iniciar-sesion {
+    padding: 12px 20px;
+    border-bottom: 1px solid white;
+    width: 100%;
+  }
+
+  .nav-item span, .contacto span, .iniciar-sesion span {
+    color: white;
+    font-size: 18px;
+  }
+
+  .hamburger {
+    display: flex;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 44px;
+  }
+
+  .divider {
+    display: none;
+  }
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <form action="index.php" method="GET">
+                <input type="hidden" name="action" value="dashboard">
+                <div class="nav-logo">
+                    <button type="submit"></button>
+                    <img src="./Assets/Images/Colhumus logo text.png" alt="Logo">
+                </div>
+            </form>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <div class="divider">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
+                    <rect width="10" height="40" rx="5" fill="#468704" />
+                </svg>
+            </div>
+
+            <div class="nav-items">
+                <form action="index.php" method="GET" class="nav-form">
+                    <input type="hidden" name="action" value="dashboard">
+                    <div class="nav-item <?= $currentAction === 'dashboard' ? 'active' : '' ?>">
+                        <span>Inicio</span>
+                        <button type="submit"></button>
+                    </div>
+                </form>
+
+                <div class="divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
+                        <rect width="10" height="40" rx="5" fill="#468704" />
+                    </svg>
+                </div>
+
+                <form action="index.php" method="GET" class="nav-form">
+                    <input type="hidden" name="action" value="acercaDe">
+                    <div class="nav-item <?= $currentAction === 'acercaDe' ? 'active' : '' ?>">
+                        <span>¿Acerca de?</span>
+                        <button type="submit"></button>
+                    </div>
+                </form>
+
+                <div class="divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
+                        <rect width="10" height="40" rx="5" fill="#468704" />
+                    </svg>
+                </div>
+
+                <a class="nav-item contacto <?= $currentAction === 'contacto' ? 'active' : '' ?>"
+                    href="https://web.whatsapp.com/send/?phone=573155829805&text&type=phone_number&app_absent=0"
+                    target="_blank">
+                    <span class="icon-contacto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor"
+                            viewBox="0 -2 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </span>
+                    <span>Contacto</span>
+                </a>
+
+                <div class="divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
+                        <rect width="10" height="40" rx="5" fill="#468704" />
+                    </svg>
+                </div>
+
+                <?php if (isset($_SESSION['nombre_usuario'])): ?>
+                <div class="nav-item usuario-activo" onclick="toggleLogoutButton()">
+                    <span class="icon-iniciar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-person-fill" viewBox="0 -2 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                    </span>
+                    <span><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></span>
+                </div>
+                <button class="logout-button" id="logoutButton" onclick="logout()">Cerrar Sesión</button>
+                <?php else: ?>
+                <div class="nav-item iniciar-sesion <?= $currentAction === 'iniciarSesion' ? 'active' : '' ?>">
+                    <span class="icon-iniciar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor"
+                            class="bi bi-person-walking" viewBox="0 -2 16 16">
+                            <path
+                                d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z" />
+                            <path
+                                d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z" />
+                        </svg>
+                    </span>
+                    <form action="index.php" method="GET">
+                        <input type="hidden" name="action" value="iniciarSesion">
+                        <div class="iniciar-text">
+                            <span>Iniciar</span>
+                            <span>Sesión</span>
+                        </div>
+                        <button type="submit"></button>
+                    </form>
+                </div>
+                <?php endif; ?>
+
+
+                <div class="divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 10 40">
+                        <rect width="10" height="40" rx="5" fill="#468704" />
+                    </svg>
+                </div>
+                <div class="search-section">
+                    <form action="index.php" method="GET" class="search-form">
+                        <input type="hidden" name="action" value="searchNoticias">
+                        <input type="text" name="query" class="search-bar" placeholder="Buscar noticias...">
+                        <button class="search-button" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018" />
+                                <path
+                                    d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    // Obtener el parámetro "popup" de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const popup = urlParams.get('popup');
+
+    function logout() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cerrar sesión?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "index.php?action=logout";
+            }
+        });
+    }
+
+    if (popup) {
+        switch (popup) {
+            case 'registroExitoso':
+                Swal.fire({
+                    title: 'Registro exitoso',
+                    text: '¡Puedes iniciar sesión!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'correoDuplicado':
+                Swal.fire({
+                    title: 'El correo ya existe',
+                    text: '¡La dirección de correo ingresada ya existe!',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'login_error':
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Credenciales incorrectas.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'correoEnviado':
+                Swal.fire({
+                    title: 'Correo enviado',
+                    text: '¡Si la direccion de correo existe, se ha enviado un correo!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'correoNoEnviado':
+                Swal.fire({
+                    title: 'El correo no se ha podido enviar',
+                    text: '¡Revisa tu conección a internet!',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'contraseñaActualizada':
+                Swal.fire({
+                    title: 'Contraseña actualizada',
+                    text: '¡Intenta ingresar con tu nueva contraseña!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            case 'errorToken':
+                Swal.fire({
+                    title: 'Error',
+                    text: '¡Codigo invalido o expirado!',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                break;
+
+            default:
+                console.warn('Popup desconocido:', popup);
+        }
+    }
+
+    function toggleLogoutButton() {
+        const logoutButton = document.getElementById('logoutButton');
+        logoutButton.style.display = logoutButton.style.display === 'block' ? 'none' : 'block';
+    }
+    function toggleMenu() {
+    const navItems = document.querySelector('.nav-items');
+    navItems.classList.toggle('show');
+}
+
+    </script>
+    
+</body>
+
+
+
+
+</html>
