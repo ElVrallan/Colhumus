@@ -358,30 +358,7 @@ video:-webkit-full-screen {
 /* ============================
    AJUSTES PARA RESOLUCIONES MÁS PEQUEÑAS
 ============================ */
-@media (max-width: 1366px) {
-  .titulo-noticia-destacada{
-    font-size: 14pt;
-  }
 
-  .titulo-noticia {
-    font-size: 14pt; /* Slightly smaller font size for regular news */
-  }
-
-  .fecha-botones, 
-  .stats-actions, 
-  .accion-buttons {
-    font-size: 11pt; /* Adjust font size for buttons and stats */
-  }
-
-  .accion-button {
-    font-size: 12pt; /* Adjust button text size */
-    padding: 5px 9px; /* Slightly reduce padding for buttons */
-  }
-
-  .estadisticas {
-    font-size: 11pt; /* Adjust stats font size */
-  }
-}
 @media (max-width: 965px) {
   .noticias-container {
     margin: 0;
@@ -392,8 +369,8 @@ video:-webkit-full-screen {
     position: static !important;
     width: 100% !important;
     height: auto !important;
-    margin: 0 0 20px 0 !important;
-    display: flex;
+    margin-top: 70px !important; /* Ajusta según el alto real de tu navbar */
+    margin-bottom: 20px !important; /* Espacio debajo de la noticia destacada */
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px !important;
@@ -415,6 +392,7 @@ video:-webkit-full-screen {
     width: 96%;
     float: none;
     margin: 0 auto 10px;
+    padding: 10px;
   }
 
   .imagen-noticia img,
@@ -448,37 +426,67 @@ video:-webkit-full-screen {
   }
 
 
-  .stats-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px; /* Ajusta el espacio entre estadísticas y botones */
-    margin-top: 10px;
+   .stats-actions {
+    flex-direction: column;
+    align-items: flex-end; /* Alinea a la derecha */
+    gap: 0;
+    margin-bottom: 40px; /* Deja espacio para los botones flotantes abajo */
+    position: relative;
+    z-index: 2;
   }
 
-  .estadisticas,
-  .estadisticas-fecha-destacada {
-    width: auto;
-    font-size: 0.95em;
-    margin: 0 0 10px 0;
-    display: flex;
-    justify-content: flex-start;
+  .fecha-botones {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
     align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .fecha-botones .fecha {
+    min-width: unset;
+    max-width: unset;
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+    font-size: 0.95em;
+    text-align: left;
+  }
+
+  .fecha-botones .estadisticas {
+    width: auto;
+    min-width: 0;
+    gap: 10px;
+    margin-top: 0;
+  }
+
+
+ .accion-buttons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    width: auto;
+    justify-content: flex-end;
+    z-index: 3;
     gap: 10px;
     order: 2;
   }
+}
 
-  .accion-buttons,
-  .accion-buttons-destacada {
-    display: flex;
-    width: auto;
-    justify-content: flex-end;
-    margin: 10px 0 0 0;
-    order: 3;
-    position: static;
-    z-index: 2;
-    gap: 10px;
-  }
+.accion-buttons-destacada {
+  display: flex;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: auto;
+  justify-content: flex-end;
+  z-index: 3;
+  gap: 10px;
+  order: 2;
+}
 
   .verNoticiaButton {
     position: absolute;
@@ -491,4 +499,3 @@ video:-webkit-full-screen {
     z-index: 2;
     display: block;
   }
-}

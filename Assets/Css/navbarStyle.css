@@ -85,6 +85,16 @@ body {
   margin-right: var(--logo-margin-right);
 }
 
+.nav-logo img {
+  display: block;
+  max-height: 48px;      /* Ajusta según tu preferencia, por ejemplo 48px = 0.5cm aprox */
+  max-width: 140px;      /* Limita el ancho máximo */
+  width: auto;
+  height: auto;
+  margin-right: var(--logo-margin-right);
+  object-fit: contain;   /* Asegura que el logo siempre se vea completo */
+}
+
 .nav-item.contacto {
   text-decoration: none; /* Quita el subrayado */
   color: inherit; /* Usa el color heredado en lugar del azul predeterminado */
@@ -252,5 +262,95 @@ body {
     background-color: darkred;
 }
 
+.hamburger {
+  display: none;
+}
 
+@media (max-width: 965px) {
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
 
+  .nav-logo {
+    margin-right: auto;
+    padding-left: 0;
+    width: auto;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo img {
+    margin-right: 0;
+    max-height: 1.1cm;
+    max-width: 90vw;
+    height: auto;
+    width: auto;
+    display: block;
+  }
+
+  .nav-logo button, .nav-item button {
+    display: block;
+    width: 100%;
+    text-align: left !important;
+    padding: 10px 20px;
+    background-color: #5ab507;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    border-bottom: 1px solid white;
+  }
+
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    background-color: #5ab507;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  .nav-items.show {
+    display: flex;
+  }
+
+  .nav-item, .nav-form, .contacto, .iniciar-sesion {
+    padding: 12px 20px;
+    border-bottom: 1px solid white;
+    width: 100%;
+  }
+
+  .nav-item span, .contacto span, .iniciar-sesion span {
+    color: white;
+    font-size: 18px;
+  }
+
+  .hamburger {
+    display: flex;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 44px;
+  }
+
+  .divider {
+    display: none;
+  }
+  .nav-logo img {
+    max-height: 36px;
+    max-width: 85%;
+    margin-right: 5px;
+  }
+}
