@@ -130,7 +130,6 @@ body {
   opacity: 0;
   cursor: pointer;
 }
-
 .titulo-noticia-destacada {
   font-family: var(--fuente-titulo);
   font-size: 15pt;
@@ -139,7 +138,6 @@ body {
   padding: 2.5px 0;
   text-align: center;
 }
-
 /* ============================
    CONTENEDOR DE NOTICIAS
 ============================ */
@@ -219,7 +217,6 @@ video:-webkit-full-screen {
   justify-content: center;
   text-align: center;
 }
-
 .verMas {
   text-align: center;
   display: block;
@@ -354,7 +351,6 @@ video:-webkit-full-screen {
 .clear {
   clear: both;
 }
-
 /* ============================
    AJUSTES PARA RESOLUCIONES MÁS PEQUEÑAS
 ============================ */

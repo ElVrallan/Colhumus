@@ -1,10 +1,9 @@
 <?php
 
 require_once './Models/dashboardModel.php';
-require_once './Config/database.php';
+require_once './Config/conn.php';
 
 class DashboardController {
-    private $conectar;
     private $dashboardController;
 
     public function dashboard() {
@@ -12,9 +11,8 @@ class DashboardController {
     }
 
     public function __construct() {
-        $database= new Database();
-        $this->conectar = $database->conectar();
-        $this->dashboardController= new DashboardModel($this->conectar);
+        global $conn;
+        $this->dashboardController = new DashboardModel($conn);
     }
 
     public function getNoticiaDestacada() {

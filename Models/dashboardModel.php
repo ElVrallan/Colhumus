@@ -5,8 +5,8 @@ class DashboardModel{
     private $conn;
     private $noticias = "noticias";
 
-    public function __construct($conectar){
-        $this->conn = Database::conectar();
+    public function __construct($conn){
+        $this->conn = $conn;
     }
     
     public function getNoticiaDestacada(){

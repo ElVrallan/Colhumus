@@ -1,13 +1,15 @@
+
+
 <?php
-function abbreviateNumber($number) {
-    $number = (int) $number;
-    if ($number >= 1000000000) {
-        return round($number / 1000000000, 1) . ' B';
-    } elseif ($number >= 1000000) {
-        return round($number / 1000000, 1) . ' M';
-    } elseif ($number >= 1000) {
-        return round($number / 1000, 1) . ' K';
+
+function abbreviateNumber($num) {
+    if ($num >= 1000000) {
+        return round($num / 1000000, 1) . 'M';
+    } elseif ($num >= 1000) {
+        return round($num / 1000, 1) . 'K';
+    } else {
+        return $num;
     }
-    return $number;
 }
 ?>
+

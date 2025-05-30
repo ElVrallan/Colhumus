@@ -1,7 +1,7 @@
 <?php
 
 require_once './Models/usuarioModel.php';
-require_once './Config/database.php';
+require_once './Config/conn.php';
 require_once './Helpers/enviarCorreo.php'; // Asegúrate de que esta ruta sea correcta
 
 session_start();
@@ -10,7 +10,8 @@ class UsuarioController {
     private $usuarioModel;
 
     public function __construct() {
-        $this->usuarioModel = new UsuarioModel();
+        global $conn;
+        $this->usuarioModel = new UsuarioModel($conn);
     }
 
     // Acción de login
@@ -18,14 +19,21 @@ class UsuarioController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $correo = $_POST['correo'] ?? '';
             $contraseña = $_POST['contraseña'] ?? '';
-    
+
             $usuario = $this->usuarioModel->obtenerPorCorreo($correo);
-    
-            if ($usuario && password_verify($contraseña, $usuario['contraseña']) && !$usuario['bloqueado']) {
+
+            if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
                 $_SESSION['user_id'] = $usuario['id'];
                 $_SESSION['nombre_usuario'] = $usuario['nombre_usuario']; // para mostrar en el navbar
-                header("Location: index.php?action=dashboard");
-                exit(); // DETIENE la ejecución aquí
+                // Si está bloqueado, solo muestra aviso en la vista, pero permite el acceso
+                if ($usuario['bloqueado']) {
+                    $bloqueado = true;
+                } else {
+                    $bloqueado = false;
+                }
+                // Redirige a dashboard o donde corresponda
+                header("Location: index.php?action=dashboard" . ($bloqueado ? "&bloqueado=1" : ""));
+                exit();
             } else {
                 // Redirigir con un mensaje de error en la URL (puedes leerlo luego en la vista)
                 header("Location: index.php?action=iniciarSesion&popup=login_error");
@@ -58,33 +66,31 @@ class UsuarioController {
     }
 
     // Acción para recuperar contraseña (olvidé la contraseña)
+    public function olvideContraseña() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $correo = $_POST['correo'];
+            $usuario = $this->usuarioModel->obtenerPorCorreo($correo);
 
+            if ($usuario) {
+                $token = bin2hex(random_bytes(50));
+                $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
+                $this->usuarioModel->actualizarToken($correo, $token, $expira);
+                
+                $link = "http://localhost/proyectos/colhumus/index.php?action=reestablecerContraseña&token=$token";
 
-public function olvideContraseña() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $correo = $_POST['correo'];
-        $usuario = $this->usuarioModel->obtenerPorCorreo($correo);
-
-        if ($usuario) {
-            $token = bin2hex(random_bytes(50));
-            $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
-            $this->usuarioModel->actualizarToken($correo, $token, $expira);
-            
-            $link = "http://localhost/proyectos/colhumus/index.php?action=reestablecerContraseña&token=$token";
-
-            if (enviarCorreoRecuperacion($correo, $link)) {
-                header("Location: index.php?action=olvideContraseña&popup=correoEnviado");
+                if (enviarCorreoRecuperacion($correo, $link)) {
+                    header("Location: index.php?action=olvideContraseña&popup=correoEnviado");
+                } else {
+                    header("Location: index.php?action=olvideContraseña&popup=correoNoEnviado");
+                }
             } else {
-                header("Location: index.php?action=olvideContraseña&popup=correoNoEnviado");
+                // Por seguridad, no revelar si el correo existe o no
+                    header("Location: index.php?action=olvideContraseña&popup=correoEnviado");
             }
         } else {
-            // Por seguridad, no revelar si el correo existe o no
-                header("Location: index.php?action=olvideContraseña&popup=correoEnviado");
+            require __DIR__ . '/../views/usuarios/olvideContraseña.php';
         }
-    } else {
-        require __DIR__ . '/../views/usuarios/olvideContraseña.php';
     }
-}
 
 
     // Acción para reestablecer la contraseña
@@ -105,5 +111,14 @@ public function olvideContraseña() {
             include './Views/Includes/navbar.php';
             require __DIR__ . '/../views/usuarios/reestablecerContraseña.php';
         }
+    }
+
+    public function listarUsuarios() {
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != 1) {
+            echo "Acceso denegado.";
+            exit();
+        }
+        $usuarios = $this->usuarioModel->obtenerTodos();
+        include './Views/Usuarios/listarUsuarios.php';
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
+require_once 'Config/conn.php';
+
 class UsuarioModel {
     private $conn;
     private $usuarios = "usuarios";
 
-    public function __construct() {
-        $this->conn = Database::conectar();
+    public function __construct($conn) {
+        $this->conn = $conn;
     }
 
     public function obtenerPorCorreo($correo) {
@@ -39,6 +41,13 @@ class UsuarioModel {
         $sql = "UPDATE {$this->usuarios} SET contraseña = ?, reset_token = NULL, token_expires = NULL WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$nuevaContraHash, $id]);
+    }
+
+    public function obtenerTodos() {
+        $sql = "SELECT id, nombre_usuario, correo, bloqueado FROM {$this->usuarios}";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>
